@@ -15,6 +15,24 @@
 #'                    corresponding files inside *Including/* so they become
 #'                    the new defaults on future launches.
 #' @param ...         passed on to `shiny::runApp()`
+#'
+#' @examples
+#' mizerShiny()
+#'
+#' #Load a new mizerParams object
+#' mizerShiny(mizerParams = NS_params)
+#'
+#' #Load a new mizerSim object
+#' simbio <- project(NS_params, effort=2)
+#' simfish <- project(NS_params, effort=0)
+#'
+#' mizerShiny(mizerParams = NS_params, baseSpSim=simbio, baseFishSim=simfish)
+#'
+#' #If you like this and want to run it quicker, use REPLACE.
+#' mizerShiny(mizerParams = NS_params, baseSpSim=simbio, baseFishSim=simfish, REPLACE=TRUE)
+#' #Then this will load the same
+#' mizerShiny()
+#'
 #' @export
 mizerShiny <- function(mizerParams = NULL,
                        baseSpSim   = NULL,

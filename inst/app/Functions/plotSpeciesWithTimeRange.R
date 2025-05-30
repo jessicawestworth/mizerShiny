@@ -1,30 +1,9 @@
-#' Plot MizerSim Relative Biomass per Species Across Varying Timescales
-#'
-#' This function takes two mizerSim objects and calculates the relative %
-#' change in each given species in the chosen year, short term (1/2 of the
-#' chosen year) and the long term (2x the chosen year)
-#'
-#' @param harvested A mizerSim object
-#' @param unharvested A mizerSim object - to compare to.
-#' @param chosentime The year to plot
-#'
-#' @return A ggplot object that plots 3 bars per species - in the short,
-#' chosen and long time - it plots the relative biomass of each species in
-#' comparison to the unharvested.
-#'
-#'
-#' @examples
-#' harvested <- getBiomass(NS_sim)
-#' unharvested <- getBiomass(NS_sim)
-#' percentdiff(harvested, unharvested)
-#'
-#' @export
+
 plotSpeciesWithTimeRange <- function(harvestedprojection, unharvestedprojection, chosentime1, chosentime2,
                                      mode = c("triple", "chosen")) {
 
   mode <- match.arg(mode)
 
-  #get the biomass of the species
   unharvestedbio <- getBiomass(unharvestedprojection) %>%
     .[chosentime1:chosentime2, ] %>%
     melt() %>%
@@ -37,7 +16,6 @@ plotSpeciesWithTimeRange <- function(harvestedprojection, unharvestedprojection,
     group_by(sp) %>%
     summarize(value = mean(value, na.rm = TRUE))
 
-  #calculate percentage change in species in the chosen year
   percentage_diff <-  harvestedbio %>%
     left_join(unharvestedbio, by = "sp") %>%
     mutate(percentage_diff = ((value.x - value.y) / value.y) * 100,
@@ -49,14 +27,12 @@ plotSpeciesWithTimeRange <- function(harvestedprojection, unharvestedprojection,
   calculate_biomass_triples <- function(unharvestedprojection, harvestedprojection, year1, year2) {# Calculate mid-year and enforce a 3-year time window
     midyear <- (year1 + year2) / 2
 
-    # Define 3-year time window for 0.5x and 2x resolution
     low_start <- ceiling(midyear * 0.5) - 1
     low_end   <- ceiling(midyear * 0.5) + 1
 
     high_start <- midyear * 2 - 1
     high_end   <- midyear * 2 + 1
 
-    # Unharvested biomass
     unharvestedbiotriple <- getBiomass(unharvestedprojection)
 
     lowunbiotrip <- unharvestedbiotriple[low_start:low_end, ] %>%
@@ -69,7 +45,6 @@ plotSpeciesWithTimeRange <- function(harvestedprojection, unharvestedprojection,
       group_by(sp) %>%
       summarize(value = mean(value, na.rm = TRUE))
 
-    # Harvested biomass
     harvestedbiotriple <- getBiomass(harvestedprojection)
 
     lowbiotrip <- harvestedbiotriple[low_start:low_end, ] %>%
@@ -93,7 +68,6 @@ plotSpeciesWithTimeRange <- function(harvestedprojection, unharvestedprojection,
 
 
   if (mode == "triple") {
-  #calculate percentage change in other years
   biorange <- calculate_biomass_triples(unharvestedprojection, harvestedprojection, chosentime1, chosentime2)
 
   percentage_difflow <-  biorange[[3]] %>%

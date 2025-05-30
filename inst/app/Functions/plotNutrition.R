@@ -43,7 +43,6 @@ plotNutrition <- function(sims, ref, step) {
     geom_col(position = dodge, width = 0.7) +
     geom_hline(yintercept = 0, linetype = "dashed") +
     labs(y = "Relative value (%)", x = NULL) +
-    #coord_cartesian(ylim = c(0, max(plot_dat$Relative) * 1.1)) +
     theme_minimal() +
     theme(axis.text.x = element_text(angle = 45, hjust = 1))
 
@@ -57,7 +56,7 @@ app_path <- function(...) {
 }
 
 library(readr)
-# determine the true file location inside the package or dev tree
+
 nutrition_file <- app_path(
   "Including", "Nutrition", "checkNutrition", "nutrition.csv"
 )
@@ -170,7 +169,7 @@ if (length(match_file) == 1L) {
 #so all that is necessary in your file is species name - and the amount of nutrient for your chosen nutrients
 #in a given quantity of that species (the same quantity for each species)
 
-#the nutrition data here is from multiple sources
+#the nutrition data here is from multiple sources - compiled by Pedro Warner at Cefas
 #Robinson JPW, Garrett A, Esclapez JCP, Maire E, Parker RWR and Graham NAJ. Navigating sustainability and health trade-offs in global seafood systems (2022)
 #seafish database
 #ufish database

@@ -1,6 +1,5 @@
 plotDietCompare <- function(objects, species = NULL,
                             sim_names = NULL) {
-  # Helper to build the long data for one sim
   diet_long <- function(obj, idx, species) {
     d <- getDiet(obj@params,
                  n       = apply(obj@n,      2:3, mean),
@@ -22,8 +21,6 @@ plotDietCompare <- function(objects, species = NULL,
                       levels = rev(dimnames(d)$Prey))
     df
   }
-
-  # bind all sims
   plot_dat <- dplyr::bind_rows(
     lapply(seq_along(objects),
            function(i) diet_long(objects[[i]], i, species))

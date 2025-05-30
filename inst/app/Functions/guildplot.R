@@ -1,54 +1,11 @@
-#' Plot Guild Relative Change Across Timescales
-#'
-#' This function takes two mizerSim objects and calculates the relative %
-#' change in each given feeding guilde in the chosen year, short term (1/3 of the
-#' chosen year) and the long term (2x the chosen year)
-#'
-#' @param harvested A mizerSim object
-#' @param unharvested A mizerSim object - to compare to.
-#' @param chosentime The year to plot
-#'
-#' @return A ggplot object that plots 3 bars per species - in the short,
-#' chosen and long time - it plots the relative biomass of each feeding guild
-#' in comparison to the unharvested.
-#'
-#'
-#' @examples
-#' harvested <- getBiomass(NS_sim)
-#' unharvested <- getBiomass(NS_sim)
-#' guildplot(harvested, unharvested, 5)
-#'
-#' @export
-#' Plot Guild Relative Change Across Timescales
-#'
-#' This function takes two mizerSim objects and calculates the relative %
-#' change in each given feeding guilde in the chosen year, short term (1/3 of the
-#' chosen year) and the long term (2x the chosen year)
-#'
-#' @param harvested A mizerSim object
-#' @param unharvested A mizerSim object - to compare to.
-#' @param chosentime The year to plot
-#'
-#' @return A ggplot object that plots 3 bars per species - in the short,
-#' chosen and long time - it plots the relative biomass of each feeding guild
-#' in comparison to the unharvested.
-#'
-#'
-#' @examples
-#' harvested <- getBiomass(NS_sim)
-#' unharvested <- getBiomass(NS_sim)
-#' guildplot(harvested, unharvested, 5)
-#'
-#' @export
-  #remember to add the rule about the smallest sizes being plantivores.
+
   guildplot <- function(harvestedprojection, unharvestedprojection,
                         year1, year2,
                         guildparams, celticsim,
                         mode = c("chosen", "triple")) {
 
-    mode <- match.arg(mode)           # default = "chosen" -----------------------
+    mode <- match.arg(mode)
 
-    ## ── CHOSEN window (= what the user picked) ---------------------------------
     harvested    <- plotSpectra(harvestedprojection,
                                 time_range = year1:year2,
                                 return_data = TRUE)
@@ -56,9 +13,8 @@
                                 time_range = year1:year2,
                                 return_data = TRUE)
 
-    ## ── EXTRA windows when mode == "triple" ------------------------------------
     if (mode == "triple") {
-      midpoint   <- ceiling((year1 + year2) / 2)       # single integer year
+      midpoint   <- ceiling((year1 + year2) / 2)
 
       mid_short  <- max(1, midpoint %/% 2 - 1) : (midpoint %/% 2 + 1)
       mid_long   <- (midpoint * 2 - 1) : (midpoint * 2 + 1)
@@ -77,7 +33,6 @@
                                       return_data = TRUE)
     }
 
-    ## ── helper: collapse a spectra data set to Guild-level means ---------------
     process_guilds <- function(mizerprojection) {
 
       assign_guild <- function(dat, rules) {
@@ -109,7 +64,6 @@
         dplyr::summarise(value = mean(value), .groups = "drop")
     }
 
-    ## ── build tables -----------------------------------------------------------
     guilds    <- process_guilds(harvested)    |> dplyr::mutate(time = "chosen")
     unguilds  <- process_guilds(unharvested)  |> dplyr::mutate(time = "chosen")
 
@@ -131,7 +85,6 @@
       dplyr::mutate(percentage_diff = (value.x - value.y) / value.y * 100) |>
       dplyr::select(Guild, time, percentage_diff)
 
-    ## keep factor order consistent
     joinedguilds$time <- factor(
       joinedguilds$time,
       levels = if (mode == "chosen") "chosen" else c("short","chosen","long")

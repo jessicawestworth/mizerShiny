@@ -1,8 +1,6 @@
 
-# Helper function that processes one harvested projection relative to the unharvested one.
 process_sim <- function(harvestedprojection, unharvestedprojection, year1, year2) {
 
-  #--- "Chosen" time range difference -----------------
   unharvestedbio <- getBiomass(unharvestedprojection)[year1:year2, , drop = FALSE] %>%
     melt() %>%
     group_by(sp) %>%
@@ -20,7 +18,6 @@ process_sim <- function(harvestedprojection, unharvestedprojection, year1, year2
     filter(!Species %in% "Resource") %>%
     mutate(class = "chosen")
 
-  #--- "Short" and "Long" time ranges via biomass triples ------------
   calc_biomass_triples <- function(projection) {
     biotriple <- getBiomass(projection)
     low  <- biotriple[max(1, ceiling(year1 * 0.5)):max(2, ceiling(year2 * 0.5)), , drop = FALSE] %>%
@@ -51,10 +48,8 @@ process_sim <- function(harvestedprojection, unharvestedprojection, year1, year2
     filter(!Species %in% "Resource") %>%
     mutate(class = "long")
 
-  # Combine the three time-scale differences
   plot_data <- bind_rows(percentage_diff_short, percentage_diff_chosen, percentage_diff_long)
 
-  # Set ordering and make a fill group that distinguishes positive/negative changes
   plot_data$class <- factor(plot_data$class, levels = c("short", "chosen", "long"))
   plot_data$fill_group <- interaction(plot_data$percentage_diff >= 0, plot_data$class)
   plot_data$fill_group <- factor(
@@ -67,7 +62,6 @@ process_sim <- function(harvestedprojection, unharvestedprojection, year1, year2
   return(plot_data)
 }
 
-# Main function that processes two harvested projections and facets the plot by simulation.
 plotSpeciesWithTimeRange2 <- function(harvestedprojection1, harvestedprojection2,
                                           unharvestedprojection, chosentime1, chosentime2) {
   df1 <- process_sim(harvestedprojection1, unharvestedprojection, chosentime1, chosentime2)
