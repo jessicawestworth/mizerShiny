@@ -8,9 +8,9 @@ models, so that a wider range of people can analyse mizer outputs. It
 intends to remove the barrier of knowledge and allow individuals to
 investigate and understand ecosystem-wide trophic interactions.
 Furthermore, it intends to allow users to balance yield, sustainability
-and nutrition.
+and nutrition across different fishery strategies.
 
-## Installation and Loading mizerShiny
+## Running mizerShiny
 
 You can install the development version of mizerShiny and then run the
 default North Sea mizer model like so
@@ -18,7 +18,6 @@ default North Sea mizer model like so
 ``` r
 remotes::install_github("CefasRepRes/mizerShiny")
 library(mizerShiny)
-#Load the app using
 mizerShiny()
 ```
 
@@ -34,7 +33,8 @@ Each plot is relative to an unchanged, or ‘base’, simulation.
 
 ## Vignettes
 
-There are 2 vignettes attached with this package. ‘User-Guide’ details
-how to use each feature and what happens code-wise. ‘Make-Changes’
+There are 2 vignettes attached with this package. [User-Guide
+(PDF)](doc/User-Guide.pdf) details how to use each feature and what
+happens code-wise. [Make-Changes Guide (PDF)](doc/Make-Changes.pdf)
 details how to change the mizerParams object loaded and a basic
 explanation of adding your own plotting functions.
