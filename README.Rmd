@@ -30,7 +30,7 @@ For each page, change the model on the left configuration panel, press 'Run Simu
 
 ## Vignettes
 
-There are 2 vignettes attached with this package. 'User-Guide' details how to use each feature and what happens code-wise. 'Make-Changes' details how to change the mizerParams object loaded and a basic explanation of adding your own plotting functions. 
+There are 2 vignettes attached with this package. [User-Guide (PDF)](doc/User-Guide.pdf) details how to use each feature and what happens code-wise. [Make-Changes Guide (PDF)](doc/Make-Changes.pdf) details how to change the mizerParams object loaded and a basic explanation of adding your own plotting functions. 
 
 
 
