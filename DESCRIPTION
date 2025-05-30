@@ -1,0 +1,31 @@
+Package: mizerShiny
+Title: mizerShiny
+Version: 0.0.0.9000
+Authors@R: 
+    person("Luca", "Broadbent", , "luke.broadbent@cefas.gov.uk", role = c("aut","cre"))
+Description: Frontend to running mizer models.
+License: MIT + file LICENSE
+Imports: 
+    bslib,
+    dplyr,
+    forcats,
+    ggplot2,
+    gridlayout,
+    here,
+    mizer,
+    patchwork,
+    plotly,
+    rintrojs,
+    shiny,
+    shinyBS,
+    shinyjs,
+    shinyWidgets,
+    sortable,
+    thematic
+Suggests: 
+    knitr,
+    rmarkdown
+Encoding: UTF-8
+Roxygen: list(markdown = TRUE)
+RoxygenNote: 7.3.2
+VignetteBuilder: knitr

@@ -1,0 +1,217 @@
+
+      .btn-small {
+        padding: 5px 10px;
+          font-size: 12px;
+        border-radius: 4px;
+      }
+      .nav-tabs .nav-link.active, .nav-tabs .nav-item.show .nav-link {
+        color: #ffffff;
+        background-color: #2FA4E7;
+        border-color: #2FA4E7 #2FA4E7 #2FA4E7;
+      }
+      .nav-tabs .nav-link {
+        color: #2FA4E7;
+        border: 1px solid transparent;
+        border-top-left-radius: .25rem;
+        border-top-right-radius: .25rem;
+      }
+      .nav-tabs .nav-link:hover {
+        border-color: #e9ecef #e9ecef #ddd;
+        color: #0056b3;
+      }
+      .card {
+        border: 2px solid #2FA4E7;
+        border-radius: .5rem;
+      }
+      .plots-container {
+        padding-top: 30px;
+      }
+      .btn-info {
+       padding: 2px 4px;
+      background-image: linear-gradient(rgb(47, 164, 231), rgb(47, 164, 231) 60%, rgb(47, 164, 231));
+      }
+      #infoButtonSpecies {
+        background-color: #2FA4E7 !important;
+        color: white;
+        border: none;
+        font-size: 12px;
+        padding: 0px 7px;
+        border-radius: 10px;
+        margin-left: 8px;
+        margin-bottom: 4px;
+        margin-top: 2px;
+      }
+      #infoButtonSpecies:hover {
+        background-color: #2FA4E7;
+      }
+      .plotly {
+  height: 100% !important;
+  width: 100% !important;
+}
+        #infoButtonMort {
+        background-color: #2FA4E7 !important;
+        color: white;
+        border: none;
+        font-size: 12px;
+        padding: 0px 7px;
+        border-radius: 10px;
+        margin-left: 8px;
+        margin-bottom: 4px;
+        margin-top: 2px;
+      }
+      #infoButtonMort:hover {
+        background-color: #2FA4E7;
+      }
+        #infoButtonOrder {
+        background-color: #2FA4E7 !important;
+        color: white;
+        border: none;
+        font-size: 12px;
+        padding: 0px 7px;
+        border-radius: 10px;
+        margin-left: 8px;
+        margin-bottom: 4px;
+        margin-top: 2px;
+        }
+                .legend-btn {
+        background-color: #2FA4E7 !important;
+        color: white;
+        border: none;
+        font-size: 12px;
+        padding: 0px 7px;
+        border-radius: 10px;
+        margin-left: 8px;
+        margin-bottom: 4px;
+        margin-top: 2px;
+        }
+
+
+      .btn-primary {
+    background-image: linear-gradient(#2FA4E7, #2fa4e7 60%, #2FA4E7);
+      }
+/* New height rules for full vertical space: */
+      html, body {
+        height: 100%;
+        margin: 0;
+        padding: 0;
+      }
+
+      .plot-wrapper {
+  flex: 1 1 auto;
+  min-height: 0;
+  /* reserve 2 rem (~32 px) for the axis label */
+  padding-bottom: 2rem;
+}
+
+      .grid_container, .card, .card_body {
+        min-height: 79vh;
+      }
+          /* Let the grid container be a flexible container */
+    .grid_container {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      height: 100%;
+    }
+    /* Make cards stretch */
+    .card {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      height: 100%;
+      /* Optional: remove margin or adjust as needed */
+      margin: 0;
+    }
+    /* Allow the inner card body to fill the card */
+    .card_body {
+      flex: 1;
+      overflow-y: hidden; /* add scroll if content overflows */
+    }
+    .plot-card {
+  overflow: hidden !important;   /* suppress the redundant scrollbar */
+}
+    .navbar {
+  height: 10vh;
+  min-height: 10vh;
+}
+
+.nav-tabs {
+  height: 5vh;
+  min-height: 5vh !important;
+  overflow: hidden;
+}
+
+/* Ensure inner content respects total height */
+.grid_container, .card, .card_body {
+  min-height: calc(100vh - 21vh);
+  max-height: calc(100vh - 21vh);
+}
+
+.card_body,
+#plotCardContainer {
+  min-height: 0 !important;
+}
+
+#customOrderInfo_bio {
+  background-color: #2FA4E7 !important;
+  color: white;
+  border: none;
+  font-size: 12px;
+  padding: 0px 7px;
+  border-radius: 10px;
+  margin-left: 8px;
+  margin-bottom: 3px;
+  margin-top: 2px;
+}
+#customOrderInfo_mort {
+  background-color: #2FA4E7 !important;
+  color: white;
+  border: none;
+  font-size: 12px;
+  padding: 0px 7px;
+  border-radius: 10px;
+  margin-left: 8px;
+  margin-bottom: 3px;
+  margin-top: 2px;
+}
+#customOrderInfo_fish {
+  background-color: #2FA4E7 !important;
+  color: white;
+  border: none;
+  font-size: 12px;
+  padding: 0px 7px;
+  border-radius: 10px;
+  margin-left: 8px;
+  margin-bottom: 3px;
+  margin-top: 2px;
+}
+
+.bg-info {
+    --bs-bg-opacity: 1;
+    background-color: #2FA4E7 !important;
+}
+
+/* the flex path down to the SVG must all allow shrinking */
+.plot-wrapper,
+.plot-wrapper > .html-widget,
+.plot-wrapper .plot-container,
+.plot-wrapper .plotly,
+.plot-wrapper svg {
+  flex: 1 1 auto;        /* grow + shrink */
+  min-height: 0;         /* <-- THE critical bit */
+  width: 100% !important;
+  height: 100% !important;
+  max-width: 100%;
+  max-height: 100%;
+  overflow: hidden;      /* trim mode-bar & tooltips, no scrollbars */
+}
+
+[id^="customOrderInfo_"].btn-info {
+  background-image: none !important;   /* kill the gradient              */
+  background-color: #2FA4E7 !important; /* your colour, like before       */
+  padding: 0 7px !important;            /* tight padding, like before     */
+  border-radius: 10px !important;       /* keep the nice rounded corners  */
+  font-size: 12px !important;
+}
+
+

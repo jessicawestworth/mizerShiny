@@ -1,0 +1,68 @@
+common_name,scientific_name,worms_alpha_id,phylum,class,order,family,genus,species,,selenium (mcg),zinc (mg),omega_3 (mg),calcium (mg),iron (mg),vitamin_a (mcg),vitamin D (mcg),D2 ERGCAL(mcg),D3 CHOCAL(mcg),folate (mcg),vitamin_b12 (mg),iodine (mcg)
+Atlantic salmon,Salmo salar,127186,Chordata,Actinopteri,Salmoniformes,Salmonidae,Salmo,Salmo salar,,18.56684744,0.253615201,1199.061634,11.33047589,0.379451918,11.9074505,4.7,,5.69,5,4.4,12
+Atlantic mackerel,Scomber scombrus,127023,Chordata,Actinopteri,Scombriformes,Scombridae,Scomber,Scomber scombrus,,51.95536808,0.694573758,760.918991,20.10148527,0.704570517,16.81810264,8,,6.44,1,8.8,29
+Atlantic cod,Gadus morhua,126436,Chordata,Actinopteri,Gadiformes,Gadidae,Gadus,Gadus morhua,,15.44717801,0.422098776,533.315366,9.579675117,0.124969796,10.65936332,0,,0.88,7,1.5,196
+Skipjack tuna,Katsuwonus pelamis,127018,Chordata,Actinopteri,Scombriformes,Scombridae,Katuwonus,Katsuwonus pelamis,,87.39649576,1.540619588,449.731036,155.2889152,2.267505658,6.635559235,3.2,,,4,2.2,18
+Haddock,Melanogrammus aeglefinus,126437,Chordata,Actinopteri,Gadiformes,Gadidae,Melanogrammus,Melanogrammus aeglefinus,,32.88016692,0.308687628,616.929001,10.18140899,0.175196758,7.920938296,0,0,0.5,10,1.9,320
+Atlantic herring,Clupea harengus,126417,Chordata,Actinopteri,Clupeiformes,Clupeidae,Clupea,Clupea harengus,,16.47946925,1.028568358,914.504005,75.36142584,0.372178257,29.06716422,19,,9.59,9,13,29
+Alaska pollock,Gadus chalcogrammus,300735,Chordata,Actinopteri,Gadiformes,Gadidae,Gadus,Gadus chalcogrammus,,14.47168841,0.445398332,336.97462,12.04720893,0.185400806,11.23677228,0,,,5,2.3,56
+Rainbow trout,Oncorhynchus mykiss,127185 ,Chordata,Actinopteri,Salmoniformes,Salmonidae,Oncorhynchus,Oncorhynchus mykiss,,264.571134,0.523086085,1042.40591,29.76506854,0.916872256,5.654445043,7.9,,6.9,9,2.8,5
+Sea trout,Salmo trutta,127187,Chordata,Actinopteri,Salmoniformes,Salmonidae,Salmo,Salmo trutta,,19.12131521,0.5438428,558.997062,32.98564055,1.397001564,6.335406459,7.9,,,9,2.8,5
+Ling,Molva molva,126461,Chordata,Actinopteri,Gadiformes,Lotidae,Molva,Molva molva,,32.48739074,0.280264175,368.429759,15.1905554,0.27794797,8.346642533,0,,,7,1, 
+Turbot,Scophthalmus maximus,127149,Chordata,Actinopteri,Pleuronectiformes,Scophthalmidae,Scophthalmus,Scophthalmus maximus,,14.14015984,0.156291298,274.512858,28.51438306,0.144259598,8.191237237,0,,3.63,8,2, 
+European hake,Merluccius merluccius,126484,Chordata,Actinopteri,Gadiformes,Merlucciidae,Merluccius,Merluccius merluccius,,34.6,0.3,248,14,0.5,11.8,0,,,,,
+Blue whiting,Micromesistius poutassou,126439,Chordata,Actinopteri,Gadiformes,Gadidae,Micromesistius,Micromesistius poutassou,,8.99,0.712,249,59.8,0.423,33.2,,,,,,
+Common dab,Limanda limanda,127139,Chordata,Actinopteri,Pleuronectiformes,Pleuronectidae,Limanda,Limanda limanda,,70,0.5,319,24,0.3,0,1.5,,,5,2,30
+Sprat,Sprattus sprattus,126425,Chordata,Actinopteri,Clupeiformes,Clupeidae,Sprattus,Sprattus sprattus,,10,1.7,1300,97,1.1,60,13,,,,7,64
+whiting,Merlangius merlangus,126438,Chordata,Actinopteri,Gadiformes,Gadidae,Merlangius,Merlangius merlangus,,21,0.4,100,18,0.1,0,0,,4.11,13,2.3,67
+John dory,Zeus faber,127427,Chordata,Actinopteri,Zeiformes,Zeidae,Zeus,Zeus faber,,21,0.3,500,40,0.246,0,0,0,0.5,,,
+Horse mackerel,Trachurus trachurus,126822,Chordata,Actinopteri,Carangiformes,Carangidae,Trachurus,Trachurus trachurus,,53,0.41,1750,40,1.1,4,,,41.19,2,6.8,29
+Four-spotted megrim,Lepidorhombus boscii,127145,Chordata,Actinopteri,Pleuronectiformes,Scophthalmidae,Lepidorhombus,Lepidorhombus boscii,,15.2,0.417,676,39.8,0.311,14.5,,,,,,
+Monkfish,Lophius spp.,,Chordata,Actinopteri,Lophiiformes,Lophiidae,Lophius,Lophius spp.,,37,0.5,100,8,0.3,0,0,,,7,0.9,
+Lemon sole,Microstomus kitt,127140,Chordata,Actinopteri,Pleuronectiformes,Pleuronectidae,Microstomus,Microstomus kitt,,50,0.3,50,17,0.12,0,0,,,13,1,23
+Norway pout,Trisopterus esmarkii,126444,Chordata,Actinopteri,Gadiformes,Gadidae,Trisopterus,Trisopterus esmarkii,,17.5,1.25,627,73.1,0.802,25.5,,,,,,
+Dover sole,Solea solea,127160,Chordata,Actinopteri,Pleuronectiformes,Soleidae,Solea,Solea solea,,23,0.4,224,29,0.8,0,0,,0.75,,,
+Plaice,Pleuronectes platessa,127143,Chordata,Actinopteri,Pleuronectiformes,Pleuronectidae,Pleuronectes,Pleuronectes platessa,,35,0.5,160,17,0.1,0,0,,1.11,12,1.3,31
+Poor cod,Trisopterus minutus,126446,Chordata,Actinopteri,Gadiformes,Gadidae,Trisopterus,Trisopterus minutus,,19.3,1.13,701,66.1,0.674,16.6,,,,,,
+Bib,Trisopterus luscus,126445,Chordata,Actinopteri,Gadiformes,Gadidae,Trisopterus,Trisopterus luscus,,14.4,1.29,649,69.1,0.679,13.5,,,0.32,,,
+lesser spotted dogfish,Scyliorhinus canicula,105814,Chordata,Elasmobranchii,Carcharhiniformes,Scyliorhinidae,Scyliorhinus,Scyliorhinus canicula,,33.3,0.55,207,18.1,0.642,8.46,,0,,,,
+Blonde ray,Raja brachyura,367297,Chordata,Elasmobranchii,Rajiformes,Rajidae,Raja,Raja brachyura,,14.8,0.31,869,4.69,0.26,7.7,,,,,,
+Sandy ray,Leucoraja circularis,105873 ,Chordata,Elasmobranchii,Rajiformes,Rajidae,Leucoraja,Leucoraja circularis,,17.7,0.34,712,4.74,0.236,4.71,,,,,,
+Small-eyed ray,Raja microocellata,105885,Chordata,Elasmobranchii,Rajiformes,Rajidae,Raja,Raja microocellata,,10.4,0.354,847,6.33,0.25,6.1,,,,,,
+Thornback ray,Raja clavata,105883,Chordata,Elasmobranchii,Rajiformes,Rajidae,Raja,Raja clavata,,39.7,0.47,579,9.22,0.628,5.22,,,,,,
+Undulate ray,Raja undulata,105891,Chordata,Elasmobranchii,Rajiformes,Rajidae,Raja,Raja undulata,,28.1,0.511,486,11.4,0.064,4.78,,,,,,
+Spotted ray,Raja montagui,105887,Chordata,Elasmobranchii,Rajiformes,Rajidae,Raja,Raja montagui,,14.6,0.34,1000,5.91,0.244,6.24,,,,,,
+Cuckoo ray,Leucoraja circularis,105876,Chordata,Elasmobranchii,Rajiformes,Rajidae,Leucoraja,Leucoraja naevus,,28.6,0.415,488,14,0.805,8.99,,,,,,
+Veined squid,Loligo forbesii,140270 ,Mollusca,Cephalopoda,Myopsida,Loliginidae,Loligo,Loligo forbesii,,,,,,,,,,,,,
+European squid,Loligo vulgaris,140271 ,Mollusca,Cephalopoda,Myopsida,Loliginidae,Loligo,Loligo vulgaris,,66,1.1,600,13,0.5,15,,,0,13,3,20
+lesser flying squid,Todaropsis eblanae,140625 ,Mollusca,Cephalopoda,Oegopsida,Ommastrephidae,Todaropsis,Todaropsis eblanae,,,,,,,,,,,,,
+Shortfin Squid,Illex coindetii,140621,Mollusca,Cephalopoda,Oegopsida,Ommastrephidae,Illex,Illex coindetii,,,,,,,,,,,,,
+Common cuttlefish,Sepia officinalis,141444,Mollusca,Cephalopoda,Sepiida,Sepiidae,Sepia,Sepia officinalis,,65,1.2,200,59,3.4,0,,,0,13,2,
+Anchovy,Engraulis encrasicolus,400098,Chordata,Actinopteri,Clupeiformes,Engraulidae,Engraulis,Engraulis encrasicolus,,36.5,1.72,1637,147,3.25,15,,,,9,0.62,
+Blue ling,Molva dypterygia,154806,Chordata,Actinopteri,Gadiformes,Lotidae,Molva,Molva dypterygia,,29.8,0.305,381,16.4,0.278,10.9,,0,,,,
+Boarfish,Capros aper,127419,Chordata,Actinopteri,Acanthuriformes,Caproidae,Capros,Capros aper,,37,0.767,313,74.7,1.11,18.1,,,,,,
+Greater silver smelt,Argentina silus,126715,Chordata,Actinopteri,Argentiniformes,Argentinidae,Argentina,Argentina silus,,22.1,0.487,180,26.6,0.366,24.9,,,,,,
+Megrim,Lepidorhombus whiffiagonis,127146,Chordata,Actinopteri,Pleuronectiformes,Scophthalmidae,Lepidorhombus,Lepidorhombus whiffiagonis,,14.6,0.285,350,21.2,0.309,12.1,,,,,,
+Common octopus ,Octopus vulgaris,140605,Mollusca,Cephalopoda,Octopoda,Octopodidae,Octopus,Octopus vulgaris,,44.8,1.68,239,53,5.3,45,,,0,16,20,41
+Red seabream,Pagellus bogaraveo,127059,Chordata,Actinopteri,Perciformes,Sparidae,Pagellus,Pagellus bogaraveo,,47.9,0.275,742,41.2,0.167,10.4,,,,,,
+Round nose grenadier,Coryphaenoides rupestris,158960,Chordata,Actinopteri,Gadiformes,Macrouridae,Coryphaenoides,Coryphaenoides rupestris,,26.9,0.429,104,17.4,0.296,21.2,,,0.52,,,
+Saithe,Pollachius virens,126441,Chordata,Actinopteri,Gadiformes,Gadidae,Pollachius,Pollachius virens,,33,0.43,230,7,0.3,4,0,,1.77,5,3.5,111
+Shagreen ray,Leucoraja fullonica,105874,Chordata,Elasmobranchii,Rajiformes,Rajidae,Leucoraja,Leucoraja fullonica,,,,,,,,,,,,,
+Atlantic Pollock, Pollachius pollachius,126440,Chordata,Actinopteri,Gadiformes,Gadidae,Pollachius,Pollachius pollachius,,25.4,0.401,544,20,0.7,3,0,,,,,
+Grey Mullet,Mugil spp.,,Chordata,Actinopteri,Mugiliformes,Mugilidae,Mugil,Mugil spp.,,51,0.4,,27,1,47,,,2.12,,,190
+Sardines ,Sardina pilchardus,126421,Chordata,Actinopteri,Clupeiformes,Clupeidae,Sardina,Sardina pilchardus,,51,0.7,1110,50,1.6,10,4,,,7,8.3,79
+European seabass,Dicentrarchus labrax,126975,Chordata,Actinopteri,Moroniformes,Moronidae,Dicentrarchus,Dicentrarchus labrax,,29,0.62,1200,14,0.3,34,,,2.31,5,3,8
+Squid (general),,,Mollusca,Cephalopoda,,,,,,66,1.1,400,13,0.5,15,0,,,13,3,20
+Starry ray,Amblyraja radiata,105865,Chordata,Elasmobranchii,Rajiformes,Rajidae,Amblyraja,Amblyraja radiata,,,,,,,,,,,,,
+Spurdog,Squalus acanthias,105923,Chordata,Elasmobranchii,Squaliformes,Squalidae,Squalus,Squalus acanthias,,33.6,0.52,795,13,1.32,239,0.38,,,3.2,1.8,260
+European eel,Anguilla anguilla,126281,Chordata,Actinopteri,Anguilliformes,Anguillidae,Anguilla,Anguilla anguilla,,26.3,2,5240,35,0.35,1800,30,,,14,4.4,25
+Flounder,Platichtys flesus,127141,Chordata,Actinopteri,Pleuronectiformes,Pleuronectidae,Platichtys,Platichtys flesus,,20.4,0.78,531,35,0.3,9,0.8,,,15,3,15.5
+Garfish,Belone belone,126375,Chordata,Actinopteri,Beloniformes,Belonidae,Belone,Belone belone,,30.9,0.5,1050,25,0.4,7,5,,,1,2.7,20
+Spotted wolffish,Anarhichas minor,126759,Chordata,Actinopteri,Perciformes ,Anarhichadidae ,Anarhichas,Anarhichas minor,,39.4,0.569,1900,35,1,18,1.3,,,1,2.2,60
+Flathead grey mullet,Mugil cephalus,126983,Chordata,Actinopteri,Mugiliformes,Mugilidae,Mugil,Mugil cephalus,,51,0.4,500,27,1,7.56,,,2.12,,,190
+Ray spp.,Raja spp.,,Chordata,Elasmobranchii,Rajiformes,Rajidae,Raja,Raja spp.,,28,0.41,156,11.8,0.23,2,,,0.35,,1.13,24
+Blackbellied angler,Lophius budegassa,,Chordata,Actinopteri,Lophiiformes,Lophiidae,Lophius,Lophius budegassa,,41,0.44,130,1,0.26,27.5,,,0.33,,0.46,41
+Black seabream,Spondyliosoma cantharus,127066,Chordata,Actinopteri,Perciformes,Sparidae,Spondyliosoma ,Spondyliosoma cantharus,,20,0.8,1346,100,0.39,1.5,,,0.54,,2.65,31
+Gilthead seabream,Sparus aurata,151523,Chordata,Actinopteri,Perciformes,Sparidae,Sparus,Sparus aurata,,7,0.42,1741,7.5,0.46,4.5,,,0.87,,2.93,7
+Atlantic halibut,Hippoglossus hippoglossus,127138,Chordata,Actinopteri,Pleuronectiformes,Pleuronectidae,Hippoglossus ,Hippoglossus hippoglossus,,30,0.44,900,6.3,0.12,7.93,9,,2.1,,,6
+Conger eel,Conger conger,126285,Chordata,Actinopteri,Anguilliformes,Congridae,Conger,Conger conger,,39.3,0.278,482,10.9,0.259,8.33,,,,,3,
