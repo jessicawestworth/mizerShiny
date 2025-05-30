@@ -79,7 +79,7 @@ mizerShiny <- function(mizerParams = NULL,
       save_obj(baseFishSim, "mizerSim/Unfished", "unfishedprojection.rdata")
   }
 
-  ## ---- make them visible to the app without touching .GlobalEnv ------------
+  ## ---- make them visible to the app without touching GlobalEnv -------------
   runtime_env <- list2env(
     list(
       celticsim             = celticsim,

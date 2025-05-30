@@ -3,7 +3,8 @@
 
 # mizerShiny
 
-The goal of mizerShiny is to provide a frontend for running mizer
+The goal of mizerShiny is to provide a frontend for running
+[mizer](https://besjournals.onlinelibrary.wiley.com/doi/10.1111/2041-210X.12256)
 models, so that a wider range of people can analyse mizer outputs. It
 intends to remove the barrier of knowledge and allow individuals to
 investigate and understand ecosystem-wide trophic interactions.
@@ -12,8 +13,8 @@ and nutrition across different fishery strategies.
 
 ## Running mizerShiny
 
-You can install the development version of mizerShiny and then run the
-default North Sea mizer model like so
+You can install mizerShiny and then run the default North Sea mizer
+model like so
 
 ``` r
 remotes::install_github("CefasRepRes/mizerShiny")
@@ -23,18 +24,18 @@ mizerShiny()
 
 ## Tutorial
 
-Click the ‘Page Guide’ button on the top right to get a basic
+Click the `Page Guide` button on the top right to get a basic
 explanation of the page. Detailed information can be found in the
-attached ‘User-Guide’ vignette.
+[User-Guide](doc/User-Guide.pdf) vignette.
 
 For each page, change the model on the left configuration panel, press
-‘Run Simulation’ and then analyse the ecosystem impacts on the right.
-Each plot is relative to an unchanged, or ‘base’, simulation.
+`Run Simulation` and then analyse the ecosystem impacts on the right.
+Each plot is relative to an unchanged simulation.
 
 ## Vignettes
 
-There are 2 vignettes attached with this package. [User-Guide
-(PDF)](doc/User-Guide.pdf) details how to use each feature and what
-happens code-wise. [Make-Changes Guide (PDF)](doc/Make-Changes.pdf)
-details how to change the mizerParams object loaded and a basic
-explanation of adding your own plotting functions.
+There are 2 vignettes attached with this package.
+[User-Guide](doc/User-Guide.pdf) details how to use each feature and
+what happens code-wise. [Make-Changes](doc/Make-Changes.pdf) details how
+to change the mizerParams object loaded and a basic explanation of
+adding your own plotting functions.
