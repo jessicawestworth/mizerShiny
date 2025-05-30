@@ -18,6 +18,7 @@ default North Sea mizer model like so
 ``` r
 remotes::install_github("CefasRepRes/mizerShiny")
 library(mizerShiny)
+#Load the app using
 mizerShiny()
 ```
 
