@@ -5,7 +5,7 @@ Authors@R:
     person("Luca", "Broadbent", , "luke.broadbent@cefas.gov.uk", role = c("aut","cre"))
 Description: Frontend to running mizer models.
 License: MIT + file LICENSE
-Imports: 
+Imports:
     bslib,
     dplyr,
     forcats,

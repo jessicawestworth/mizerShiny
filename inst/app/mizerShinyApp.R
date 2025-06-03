@@ -1,21 +1,21 @@
-library(shiny)
-library(mizer)
-library(ggplot2)
-library(bslib)
-library(plotly)
-library(ggplot2)
-library(gridlayout)
-library(thematic)
-library(tidyverse)
-library(forcats)
-library(shinyBS)
-library(rintrojs)
-library(patchwork)
-library(here)
-library(sortable)
-library(shinyjs)
-library(shinyWidgets)
-library(dplyr)
+# library(shiny)
+# library(mizer)
+# library(ggplot2)
+# library(bslib)
+# library(plotly)
+# library(ggplot2)
+# library(gridlayout)
+# library(thematic)
+# library(tidyverse)
+# library(forcats)
+# library(shinyBS)
+# library(rintrojs)
+# library(patchwork)
+# library(here)
+# library(sortable)
+# library(shinyjs)
+# library(shinyWidgets)
+# library(dplyr)
 
 #Functions to help load in files
 app_path <- function(...) {
@@ -136,7 +136,7 @@ server <- function(input, output, session) {
           2
         }else(celticsim@initial_effort[gear]*2),
         value = celticsim@initial_effort[gear],
-        step = 0.1,
+        step = 0.05,
         width = "100%"
       )
     })
@@ -151,9 +151,11 @@ server <- function(input, output, session) {
         inputId = paste0("effort2_", gear),  # e.g., "effort_total"
         label = paste("Effort for", gear),
         min = 0,
-        max = celticsim@initial_effort[gear]*2,
+        max = if(celticsim@initial_effort[gear]==0){
+          2
+        }else(celticsim@initial_effort[gear]*2),
         value = celticsim@initial_effort[gear],
-        step = 0.1,
+        step = 0.05,
         width = "100%"
       )
     })
@@ -588,7 +590,6 @@ server <- function(input, output, session) {
 
   #changing the timerange to subset on the plot  for yield
   observe({
-
     time1  <- input$fishyear  + 1
     time22 <- input$fishyear2 + 1
 
@@ -848,29 +849,221 @@ server <- function(input, output, session) {
     p
   })
 
+  #So that you can repress the button and rerun
+  observeEvent(c(input$goButton2, input$goButton22), {
+    built(FALSE)
+  }, ignoreInit = TRUE)
+
+  #SO that it saves the last plot, and remembers that the plot is already built (so just change data not plot object)
+  built            <- reactiveVal(FALSE)
+  lastSpectrumPlot <- reactiveVal(NULL)
+
+  #helper to get the data
+  getSpectraData <- function(sim, win) {
+    df <- plotSpectra(sim$sim1,
+                      time_range  = win$start:win$end,
+                      return_data = TRUE)
+    split(df, df$Species)
+  }
+
   output$spectrumPlot <- renderPlotly({
-    req(fishSimData())
+
+    input$goButton2; input$goButton22
 
     p <- tryCatch({
-      g <- if (is.null(fishSimData()$sim2))
-        plotSpectra(fishSimData()$sim1,
-                    time_range = fish_win1()$start:fish_win1()$end)
-      else
-        plotSpectra2(fishSimData()$sim1, fishSimData()$sim2,
-                     fish_win1()$start, fish_win1()$end,
-                     fish_win1()$start, fish_win1()$end)
 
-      if (!isTRUE(input$logToggle5)) g <- g + scale_x_continuous()
-      ggplotly(g + theme_minimal())
-    },
-    error = function(e) {
+      sim <- isolate(fishSimData()); req(sim)
+      win <- isolate(fish_win1())
+      if (!is.null(sim$sim2)) {
+        df1 <- plotSpectra(sim$sim1,
+                           time_range  = win$start:win$end,
+                           return_data = TRUE) %>%
+          mutate(sim = "Sim 1")
+        df2 <- plotSpectra(sim$sim2,
+                           time_range  = win$start:win$end,
+                           return_data = TRUE) %>%
+          mutate(sim = "Sim 2")
+
+        species <- sort(unique(c(df1$Species, df2$Species)))
+        maxn <- RColorBrewer::brewer.pal.info["Set3", "maxcolors"]
+        if (length(species) <= maxn) {
+          colors <- RColorBrewer::brewer.pal(length(species), "Set3")
+        } else {
+          colors <- grDevices::colorRampPalette(RColorBrewer::brewer.pal(maxn, "Set3"))(length(species))
+        }
+
+        tmp <- plot_ly(source = "spec")
+        for (sp in species) {
+          i <- which(species == sp)
+          sub1 <- df1 %>% filter(Species == sp)
+          tmp <- add_lines(
+            tmp,
+            data        = sub1,
+            x           = ~w,
+            y           = ~value,
+            name        = sp,
+            legendgroup = sp,
+            line        = list(color = colors[i], dash = "solid"),
+            inherit     = FALSE
+          )
+          sub2 <- df2 %>% filter(Species == sp)
+          tmp <- add_lines(
+            tmp,
+            data        = sub2,
+            x           = ~w,
+            y           = ~value,
+            name        = sp,
+            legendgroup = sp,
+            line        = list(color = colors[i], dash = "dash"),
+            inherit     = FALSE,
+            showlegend  = FALSE
+          )
+        }
+
+        axType <- if (isTRUE(input$logToggle5)) "log" else "linear"
+        tmp <- layout(
+          tmp,
+          xaxis     = list(type = axType, title = "Weight"),
+          yaxis     = list(type = "log", title = "Density"),
+          hovermode = "closest"
+        )
+        tmp <- tmp |>
+          event_register("plotly_restyle") |>
+          event_register("plotly_legendclick") |>
+          event_register("plotly_legenddoubleclick")
+
+        lastSpectrumPlot(tmp)
+        built(TRUE)
+        tmp
+      } else {
+        spec_df <- plotSpectra(sim$sim1,
+                               time_range  = win$start:win$end,
+                               return_data = TRUE)
+        spec <- split(spec_df, spec_df$Species)
+
+        species <- sort(unique(spec_df$Species))
+        maxn <- RColorBrewer::brewer.pal.info["Set3", "maxcolors"]
+        if (length(species) <= maxn) {
+          colors <- RColorBrewer::brewer.pal(length(species), "Set3")
+        } else {
+          colors <- grDevices::colorRampPalette(RColorBrewer::brewer.pal(maxn, "Set3"))(length(species))
+        }
+
+        tmp <- plot_ly(source = "spec")
+        for (sp in species) {
+          i <- which(species == sp)
+          sub <- spec[[sp]]
+          tmp <- add_lines(
+            tmp,
+            data    = sub,
+            x       = ~w,
+            y       = ~value,
+            line    = list(color = colors[i]),
+            name    = sp,
+            inherit = FALSE
+          )
+        }
+
+        axType <- if (isTRUE(input$logToggle5)) "log" else "linear"
+        tmp <- layout(
+          tmp,
+          xaxis     = list(type = axType, title = "Weight"),
+          yaxis     = list(type = "log", title = "Density"),
+          hovermode = "closest"
+        )
+        tmp <- tmp |>
+          event_register("plotly_restyle") |>
+          event_register("plotly_legendclick") |>
+          event_register("plotly_legenddoubleclick")
+
+        lastSpectrumPlot(tmp)
+        built(TRUE)
+        tmp
+      }
+
+    }, error = function(e) {
+      message("Spectrum build failed: ", e$message)
       lastSpectrumPlot()
     })
 
-    lastSpectrumPlot(p)
     p
   })
 
+  #Change the time plotted without having to replot everything (thereby saving the legends chosen)
+  observeEvent(
+    fish_win1(),
+    {
+      req(built())
+
+      tryCatch({
+        win <- fish_win1()
+        sim <- fishSimData()
+
+        # ---- pull fresh spectra -------------------------------------------------
+        df1 <- plotSpectra(sim$sim1,
+                           time_range  = win$start:win$end,
+                           return_data = TRUE)
+        spec1 <- split(df1, df1$Species)
+
+        if (!is.null(sim$sim2)) {
+          df2 <- plotSpectra(sim$sim2,
+                             time_range  = win$start:win$end,
+                             return_data = TRUE)
+          spec2 <- split(df2, df2$Species)
+        } else {
+          spec2 <- list()
+        }
+
+        species <- sort(unique(c(names(spec1), names(spec2))))
+        px <- plotlyProxy("spectrumPlot", session)
+
+        i <- 0L
+        for (sp in species) {
+          if (sp %in% names(spec1)) {
+            sub1 <- spec1[[sp]]
+            plotlyProxyInvoke(
+              px, "restyle",
+              list(x = list(sub1$w),
+                   y = list(sub1$value)),
+              list(i))
+            i <- i + 1L
+          }
+          if (sp %in% names(spec2)) {
+            sub2 <- spec2[[sp]]
+            plotlyProxyInvoke(
+              px, "restyle",
+              list(x = list(sub2$w),
+                   y = list(sub2$value)),
+              list(i))
+            i <- i + 1L
+          }
+        }
+      }, error = function(e) {
+        message("Spectrum proxy update failed: ", e$message)
+      })
+    },
+    ignoreInit = TRUE
+  )
+
+  #Toggle X axis to log or not for Spectrum
+  observeEvent(
+    input$logToggle5,
+    {
+      req(built())
+
+      tryCatch({
+        axType <- if (isTRUE(input$logToggle5)) "log" else "linear"
+        plotlyProxyInvoke(
+          plotlyProxy("spectrumPlot", session),
+          "relayout",
+          list(xaxis = list(type = axType),
+               yaxis = list(type = "linear")))
+      }, error = function(e) {
+        message("Axis relayout failed: ", e$message)
+      })
+    },
+    ignoreInit = TRUE
+  )
 
   output$fishdietsingleplot <- renderPlotly({
     req(fishSimData())

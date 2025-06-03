@@ -32,6 +32,10 @@ It will not rerun the simulation so it is considerably faster. Use 'Reset Time' 
 the order that these species are presented may allow for easier observation of
 any general patterns. You can change and customise the order using the options here."
   ),
+  list(element = "#plotTabs_mort", title="Plots", intro = "Here is where you can navigate between different aspects of the ecosystem.
+       Remember that each plot uses plotly, so you can look at specific areas of the plot by selecting with your mouse (then double click to reset),
+       remove plot items by clicking them on the legend (double click to remove everything but that one), hover over plot information to get
+       more specific values and save the plot by using the picture icon in the top right of the plot."),
   list(element = "#plotTabs_mort .nav-link[data-value='Species']", title = "Species",
        intro = "The first plot presents the percentage change in each of the species. This percentage change is relative to an equal ecosystem,
 except without your imposed change on the species. Each species has 3 bars, which indicate the species percentage change on

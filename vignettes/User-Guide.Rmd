@@ -100,7 +100,7 @@ The next main section of the app can be accessed from the top of the page. It al
 
 Find more information about how fishing works in mizer [here](https://sizespectrum.org/mizer/reference/newMultispeciesParams.html?q=fishing#setting-fishing)
 
-Additionally, in this section you can compare 2 different fishing strategies and observe the difference. Each plot will change depending on whether you have decided to compare strategies or run one strategy. Even if you are comparing strategies, both will be plotted relative to the current fishing strategy. 
+Additionally, in this section you can compare 2 different fishing strategies and observe the difference. Each plot will change depending on whether you have decided to compare strategies or run one strategy. Even if you are comparing strategies, both will be plotted relative to the current fishing strategy. Generally, the second simulation you choose will be a dashed line, whereas the first is a solid line.
 
 Use the sliders in the panel to change the fishing fleets. 
 
@@ -129,9 +129,13 @@ It is also possible to average yield over chosen years using the slider 'Time Ra
 
 The spectra plot is similar to the 'size' plot outlined prior, but it does not plot all species together, it separates each spectrum into each species. It is useful to look at how different fishing strategies effect species of different sizes, but can be difficult to recognise changes due to the large range of biomass that is plotted. 
 
-It can be controlled by a log button.
+The X axis can be controlled by the log button. 
 
 ![](images/spectra.png){width=50%}
+
+It is possible to use the plotly functionality here in conjunction with the 'Time Range' slider. Click on species in the legend to remove them, and double click them to remove other species. Then, you can change the time plotted to see how the size spectrum of a species develops over a fishing strategy. 
+
+![](images/1spectra.png){width=50%}
 
 ## Diet
 

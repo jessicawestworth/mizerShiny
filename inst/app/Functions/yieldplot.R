@@ -179,10 +179,10 @@ generateYieldDashboard <- function(NS_sim,
       y_off <- 0.06
     } else {
       if (idx == 1) {
-        x_off <- 0.07
+        x_off <- 0.05
         y_off <- 0.08
       } else {
-        x_off <- 0.07
+        x_off <- 0.05
         y_off <- 0.04
       }
     }
