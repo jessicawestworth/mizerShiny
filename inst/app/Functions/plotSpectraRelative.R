@@ -28,11 +28,11 @@ plotSpectraRelative <- function(object1, object2, time1, time2) {
     group_by(w) |>
     summarise(x = sum(value.x, na.rm = TRUE),
               y = sum(value.y, na.rm = TRUE)) |>
-    mutate(rel_diff = 2 * (y - x) / (x + y))
+    mutate(Percentage_Change = (2 * (y - x) / (x + y))*100)
 
   sf <- ggplot() +
     geom_line(data = sf,
-              aes(x = w, y = rel_diff * 100),
+              aes(x = w, y = Percentage_Change),
               color = "#2FA4E7") +
     geom_hline(yintercept = 0, linetype = "dashed",
                colour = "dark grey", linewidth = 0.75) +

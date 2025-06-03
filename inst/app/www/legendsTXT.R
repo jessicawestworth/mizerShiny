@@ -3,7 +3,7 @@ legends <- list(
   biomass_species =
     "Change in biomass of each species across a time range. The X axis shows \
 the species and the Y axis is the percentage change in its biomass compared \
-with the base simulation.Each species has three bars (&frac12;&times; time range, chosen \,
+with the base simulation.Each species has three bars (&frac12;&times; time range, chosen, \
 2&times; timerange). Red/blue indicate direction; dark &rarr; bright shows \
 short/chosen/long time plotted.",
   biomass_size =
@@ -21,7 +21,7 @@ group fish by diet and life stage.",
   mortality_species =
     "Change in biomass of each species across a time range. The X axis shows \
 the species and the Y axis is the percentage change in its biomass compared \
-with the base simulation.Each species has three bars (&frac12;&times; time range, chosen \,
+with the base simulation.Each species has three bars (&frac12;&times; time range, chosen, \
 2&times; timerange). Red/blue indicate direction; dark &rarr; bright shows \
 short/chosen/long time plotted.",
   fishery_yield =
@@ -38,7 +38,7 @@ own bar and pie plots.",
     "Biomass density across size for each species. Use the <em>Log</em> switch \
 to toggle the X&nbsp;axis between log and linear scales. Click the legend \
 to select and remove species from the plot. Resource is an energy input into \
-the simulation that models plankton. ",
+the simulation that models plankton.",
 
   fishery_diet_single =
     "Diet composition of a selected fish across its size range. X axis is the \

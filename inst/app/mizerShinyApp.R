@@ -1321,7 +1321,7 @@ data-bs-content='Slider value indicates the starting biomass of the species. Exa
                                 condition = "input.plotTabs == 'Diet'",
                                 legendUI("infoButtonDietBio", legends$fishery_diet_single),
                                 br(),
-                                HTML("Select a Species to Plot"),
+                                HTML("<span style='margin-top:0px; margin-bottom:0.5rem; font-weight:500; color: var(--bs-heading-color); line-height:1.2;'>Select a Species to Plot</span>"),
                                 selectInput(
                                   inputId = "diet_species_select",
                                   label   = NULL,
@@ -1483,7 +1483,7 @@ data-bs-content='Slider value indicates the change in mortality of a species. Ex
                                 condition = "input.plotTabs_mort == 'Diet'",
                                 legendUI("infoButtonDietMort", legends$fishery_diet_single),
                                 br(),
-                                h4(HTML("Select a Species to Plot")),
+                                HTML("<span style='margin-top:0px; margin-bottom:0.5rem; font-weight:500; color: var(--bs-heading-color); line-height:1.2;'>Select a Species to Plot</span>"),
                                 selectInput(
                                   inputId = "diet_species_select_mort",
                                   label   = NULL,
