@@ -22,13 +22,13 @@ The purpose of this shiny app is for the use of mizer models and the analysis of
 
 In the mizer software the default model is the North Sea and so it is the default within mizerShiny too. Not every species that is present in the North Sea is included, but the species that make up 90% of the North Sea biomass are. Find more information about this mizer model [here](https://besjournals.onlinelibrary.wiley.com/doi/full/10.1111/1365-2664.12238).
 
-The general philosophy of the app is that each visualiation is made relatively, so that only comparisons are involved in any user analysis. The decision is made due to the fact that mizer is agnostic about units and that the mizer models themselves are not useful for a specific numerical answer. For example they are not able to be used to extract exact yields and biomass's, but to find out their trends and relationships. Consequently, any values acquired from mizer are relatively useless when interpreted alone. 
+The general philosophy of the app is that each visualisation is made relatively, so that only comparisons are involved in any user analysis. The decision is made due to the fact that mizer is agnostic about units and that the mizer models themselves are not useful for a specific numerical answer. For example they are not able to be used to extract exact yields and biomass's, but to find out their trends and relationships. Consequently, any values acquired from mizer are relatively useless when interpreted alone. 
 
-In nearly the whole app, the user's mizer simulations are compared to a base mizer simulation. The base mizer simulation is the default parameters in the mizer_params object, or is set differently by the user. Therefore it is has usually been parameterised to be in an equilibrium state, similar to the real ecosystem that it is modelling. Regardless, it is not of the utmost importance if it is not a 1:1 model of the real ecosystem, as the trophic dynamics due to the user imposed perturbations are what is worth investigating.
+In nearly the whole app, the user's mizer simulations are compared to a base mizer simulation. The base mizer simulation is the default parameters in the mizerParams object, or is set differently by the user. Therefore it is has usually been parameterised to be in an equilibrium state, similar to the real ecosystem that it is modelling. Regardless, it is not of the utmost importance if it is not a 1:1 model of the real ecosystem, as the trophic dynamics due to the user imposed perturbations are what is worth investigating.
 
 ## Single Species
 
-The single species section opens on app start and is intended to allow the user to understand the trophic role of a given species and the trophic interactions that any perturbations may result in. Only one species is changed and the rest of the model is kept the same, then the user can analyse the repercussions of their imposed change. 
+The 'Single Species' section opens on app start and is intended to allow the user to understand the trophic role of a given species and the trophic interactions that any perturbations may result in. Only one species is changed and the rest of the model is kept the same, then the user can analyse the repercussions of their imposed change. 
 
 In the single species section, users can navigate between the 'Biomass' and 'Mortality' tabs using the header in the top left. Changing between these will mean different perturbations can be made on the ecosystem. Only one type of perturbation can be made on the model, either from the 'Biomass' or 'Mortality' panel. 
 
@@ -38,13 +38,13 @@ In the single species section, users can navigate between the 'Biomass' and 'Mor
 
 Mizer models are usually parameterised to be in the steady state, meaning that if the model was ran, the abundance of any species would not change through time. It can be thought of as an equilibrium state, where the biomass flows between species and size classes is balanced. The 'Biomass' section allows you to change the starting biomass of one species. Therefore, you can observe which species interact with your chosen species, and how the perturbation of biomass change oscillates through time.
 
-As mizer is size resolved and the biomass is split between different size classes and bins, the biomass is changed to reflect this size structure. The imposed change is applied to every size class, so there is not any change observed in the ecosystem is due to the increased biomass and a change in size structure. 
+As mizer is size resolved and the biomass is split between different size classes and bins, the biomass is changed to reflect this size structure. The imposed change is applied to every size class, so the change observed in the ecosystem is due to the increased biomass and not a change in size structure. 
 
 Below contains an example where the dashed line is where the biomass values have a 50% increase for each size class.
 
 ![](images/biomasschange.png){width=50%}
 
-First, you must select the time you want the simulation to run for in 'Time Range' and the species that you want to select with 'Select a Species'. See below. Then, you change the 'Starting Biomass'. The biomass in each size class for the chosen species is multiplied by the value given in the slider. The simulation is ran for the time you specified. Plots generated will be covered in the 'plots' subsection following the 'Mortality' section. 
+To run the simulation, first you must select the time you want the simulation to run for in `Time Range` and the species that you want to select with `Select a Species`. Then, you change the `Starting Biomass`. The biomass in each size class for the chosen species is multiplied by the value given in the slider. The simulation is ran for the time you specified. The plots generated are the same as in the 'Mortality' section, so will be covered later on. 
 
 ![](images/bio.png){width=200px}
 
@@ -96,9 +96,11 @@ The information about where the guilds come from and how they can be calculated 
 
 ## Changing Time
 
-For every part in the app, it is possible to change the time that is plotted without having to rerun the simulation itself. When you run the simulation, the 'Time Range' slider will be shortened to the time that you chose, a +'1 / -1 year' button and a 'Reset Time' button will be added. Now, if you change the 'Time Range', it will keep the same simulation, but change the year that you are plotting, so it is much faster than running mizer again. The '+1 / -1  year' buttons do the same but make it easier to change at a smaller scale. 
+For every part in the app, it is possible to change the time that is plotted without having to rerun the simulation itself. When you run the simulation, the `Time Range` slider will be shortened to the time that you chose, a `+1 year` / `-1  year` button and a `Reset Time` button will be added. Now, if you change the `Time Range`, it will keep the same simulation, but change the year that you are plotting, so it is much faster than running mizer again. The `+1 year` / `-1  year` buttons do the same but make it easier to change at a smaller scale. 
 
-To rerun a simulation, you must press 'Reset Time' to make the 'Time Range' slider act as as it did previously, otherwise you will not be able to run the simulation further in time than the previous.
+To rerun a simulation, you must press `Reset Time` to make the `Time Range` slider act as as it did previously, otherwise you will not be able to run the simulation further in time than the previous.
+
+![](images/newitme.png){width=50%}
 
 ### Time
 

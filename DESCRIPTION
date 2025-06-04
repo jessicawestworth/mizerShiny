@@ -22,6 +22,7 @@ Imports:
     shinyWidgets,
     sortable,
     thematic
+Remotes: rstudio/gridlayout
 Suggests: 
     knitr,
     rmarkdown

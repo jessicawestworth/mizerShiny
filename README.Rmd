@@ -32,7 +32,11 @@ Generally for each page, change the model on the left configuration panel, press
 
 There are 2 vignettes attached with this package. [User-Guide](doc/User-Guide.pdf) details how to use each feature and what happens code-wise. [Make-Changes](doc/Make-Changes.pdf) details how to change the mizerParams object loaded and a basic explanation of adding your own plotting functions. 
 
+## Funding
 
+The funding for this project was provided by the Sustainable Management of UK Marine Resources (SMMR) programme, which is jointly administered by the Natural Environment Research Council (NERC) and the Economic and Social Research Council (ESRC). 
+
+Grant numbers are NE/V017039/1 (Cefas) and NE/V01708X/1 (University of York). 
 
 
 
