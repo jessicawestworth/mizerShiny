@@ -17,16 +17,16 @@ The goal of mizerShiny is to provide a frontend for running [mizer](https://besj
 You can install mizerShiny and then run the default North Sea mizer model like so
 
 ```{r example, eval=F}
-remotes::install_github("CefasRepRes/mizerShiny")
+devtools::install_github("CefasRepRes/mizerShiny")
 library(mizerShiny)
 mizerShiny()
 ```
 
 ## Tutorial
 
-Click the `Page Guide` button on the top right to get a basic explanation of the page. Detailed information can be found in the [User-Guide](doc/User-Guide.pdf) vignette. 
+Click the `Page Guide` button on the top right to get a basic explanation of the current page when in the app. Detailed information can be found in the [User-Guide](doc/User-Guide.pdf) vignette. 
 
-For each page, change the model on the left configuration panel, press `Run Simulation` and then analyse the ecosystem impacts on the right. Each plot is relative to an unchanged simulation. 
+Generally for each page, change the model on the left configuration panel, press `Run Simulation` and then analyse the ecosystem impacts on the right. Each plot is relative to an unchanged simulation. 
 
 ## Vignettes
 

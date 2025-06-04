@@ -198,8 +198,6 @@ server <- function(input, output, session) {
   source("Functions/2sims/guildplot2.R")
   source("Functions/2sims/plotSpectra2.R")
 
-  library(dplyr, warn.conflicts = FALSE)
-
   #Having a custom order on the X axis
   contexts <- c("bio", "mort", "fish")
   custom_species_order <- reactiveVal(NULL)
@@ -407,13 +405,13 @@ server <- function(input, output, session) {
       p
     })
 
-      ggplotly(
+
         plotDietCompare(
           harvest_sub,
           species   = input$diet_species_select,
           sim_names = c("Your Sim", "Base Sim")
-        ) + theme_minimal()
-      )},
+        )
+      },
       error = function(e) {
         # on error, return the last successful diet plot
         lastDietPlot()
@@ -560,13 +558,13 @@ server <- function(input, output, session) {
         sim@n_other <- sim@n_other[win$start:win$end, ,      drop = FALSE]
         sim
       })
-      ggplotly(
+
         plotDietCompare(
           harvest_sub,
           species   = input$diet_species_select_mort,
           sim_names = c("Your Sim", "Base Sim")
-        ) + theme_minimal()
-      )
+        )
+
     },
     error = function(e) {
       lastMortDietPlot()
@@ -1089,12 +1087,11 @@ server <- function(input, output, session) {
         p
       })
 
-      ggplotly(
+
         plotDietCompare(harvest_sub, species = input$fish_name_select,
                         sim_names = names
-        ) +
-          theme_minimal()
-      )
+        )
+
     },
     error = function(e) {
       lastFishDietSinglePlot()
@@ -1610,7 +1607,7 @@ data-bs-content='Slider value indicates the change in mortality of a species. Ex
                               ),
                               tabPanel(
                                 title = "Diet",
-                                div(style = "flex:1; display:flex;",
+                                div(style = "height:50vh; display:flex;",
                                     plotlyOutput("fishdietsingleplot", height = "100%", width = "100%")
                                 )
                               ),

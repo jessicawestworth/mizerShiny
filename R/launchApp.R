@@ -15,6 +15,22 @@
 #'                    corresponding files inside *Including/* so they become
 #'                    the new defaults on future launches.
 #' @param ...         passed on to `shiny::runApp()`
+#' @import shiny
+#' @import mizer
+#' @import ggplot2
+#' @import bslib
+#' @import plotly
+#' @import gridlayout
+#' @import thematic
+#' @import dplyr
+#' @import forcats
+#' @import shinyBS
+#' @import rintrojs
+#' @import patchwork
+#' @import here
+#' @import sortable
+#' @import shinyjs
+#' @import shinyWidgets
 #'
 #' @examples
 #' mizerShiny()

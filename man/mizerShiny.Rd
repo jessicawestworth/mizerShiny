@@ -5,7 +5,7 @@
 \title{Launch mizerShiny}
 \usage{
 mizerShiny(
-  mizerParams = mizer::NS_params,
+  mizerParams = NULL,
   baseSpSim = NULL,
   baseFishSim = NULL,
   REPLACE = FALSE,
@@ -22,7 +22,7 @@ and baseFishSim. So if making alterations to mizerParams whilst
 retaining species list, remember to reload then replace the mizerSim objects.}
 
 \item{baseSpSim}{an \strong{MizerSim} object for the \emph{Single-species} baseline
-(stored internally as \code{unharvestedprojection}).}
+(stored internally as \code{unharvestedprojection}). Initial effort in this object is the initial effort used in running simulations in the 'Single Species' section.}
 
 \item{baseFishSim}{an \strong{MizerSim} object for the \emph{Fishery Strategy}
 baseline (stored as \code{unfishedprojection}).}
@@ -35,4 +35,22 @@ the new defaults on future launches.}
 }
 \description{
 Launch mizerShiny
+}
+\examples{
+mizerShiny()
+
+#Load a new mizerParams object
+mizerShiny(mizerParams = NS_params)
+
+#Load a new mizerSim object
+simbio <- project(NS_params, effort=2)
+simfish <- project(NS_params, effort=0)
+
+mizerShiny(mizerParams = NS_params, baseSpSim=simbio, baseFishSim=simfish)
+
+#If you like this and want to run it quicker, use REPLACE.
+mizerShiny(mizerParams = NS_params, baseSpSim=simbio, baseFishSim=simfish, REPLACE=TRUE)
+#Then this will load the same
+mizerShiny()
+
 }
