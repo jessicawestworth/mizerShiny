@@ -1,11 +1,18 @@
 ---
 title: "User-Guide"
-output: rmarkdown::html_vignette
+output:
+  pdf_document:
+    latex_engine: xelatex    
+urlcolor: blue 
+header-includes:
+  - \usepackage[colorlinks=true, linkcolor=blue, urlcolor=blue]{hyperref}
 vignette: >
   %\VignetteIndexEntry{User-Guide}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
+  
 ---
+
 
 ```{r, include=FALSE}
 knitr::opts_chunk$set(
@@ -18,7 +25,7 @@ knitr::opts_chunk$set(
 
 The purpose of this shiny app is for the use of mizer models and the analysis of their outcomes without the need for any coding. Each plot acts as a comparison between the outcome of the user imposed changes and a baseline simulation. The range of plots allows for a depth of analysis; ecosystem changes can be investigated through species abundances, community size spectrum, species diet and feeding guild changes, additionally with the possibility of analysing across the temporal domain. Observation of ecosystem trade-offs can be investigated too, with a comprehensive ecosystem yield dashboard and a plot of the nutritional quality of yield. 
 
-[mizer](https://besjournals.onlinelibrary.wiley.com/doi/full/10.1111/2041-210X.12256) is a multi-species, size resolved, mechanistic ecosystem model. It is the model that is being run under the hood of the app, but it is not required that you know anything about its mechanisms to use the app. If you want to learn more, follow this link to its [main page](https://sizespectrum.org/mizer/).
+[Mizer](https://besjournals.onlinelibrary.wiley.com/doi/full/10.1111/2041-210X.12256) is a multi-species, size resolved, mechanistic ecosystem model. It is the model that is being run under the hood of the app, but it is not required that you know anything about its mechanisms to use the app. If you want to learn more, follow this link to its [main page](https://sizespectrum.org/mizer/).
 
 In the mizer software the default model is the North Sea and so it is the default within mizerShiny too. Not every species that is present in the North Sea is included, but the species that make up 90% of the North Sea biomass are. Find more information about this mizer model [here](https://besjournals.onlinelibrary.wiley.com/doi/full/10.1111/1365-2664.12238).
 
