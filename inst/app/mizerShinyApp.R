@@ -1,21 +1,21 @@
-# library(shiny)
-# library(mizer)
-# library(ggplot2)
-# library(bslib)
-# library(plotly)
-# library(ggplot2)
-# library(gridlayout)
-# library(thematic)
-# library(tidyverse)
-# library(forcats)
-# library(shinyBS)
-# library(rintrojs)
-# library(patchwork)
-# library(here)
-# library(sortable)
-# library(shinyjs)
-# library(shinyWidgets)
-# library(dplyr)
+library(shiny)
+library(mizer)
+library(ggplot2)
+library(bslib)
+library(plotly)
+library(ggplot2)
+library(gridlayout)
+library(thematic)
+library(tidyverse)
+library(forcats)
+library(shinyBS)
+library(rintrojs)
+library(patchwork)
+library(here)
+library(sortable)
+library(shinyjs)
+library(shinyWidgets)
+library(dplyr)
 
 #Functions to help load in files
 app_path <- function(...) {
@@ -1151,7 +1151,7 @@ ui <- fluidPage(rintrojs::introjsUI(), shinyjs::useShinyjs(),
     });
   ")),tags$script(src = "app.js")
                 ),
-                page_navbar(
+                bslib::page_navbar(
                   id = "bigtabpanel",
                   title = tagList(
                     img(src = "mizer.png", height = "75px",
@@ -1737,8 +1737,8 @@ data-bs-content='Slider value indicates the change in mortality of a species. Ex
                       )
                     )
                   ),
-                  nav_spacer(),
-                  nav_item(
+                  bslib::nav_spacer(),
+                  bslib::nav_item(
                     actionButton("start_tutorial", "Page Guide", class = "btn btn-primary",
                                  style = "margin-right: 20px; padding: 5px 5px;")
                   )
