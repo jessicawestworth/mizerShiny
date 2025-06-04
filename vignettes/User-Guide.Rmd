@@ -26,16 +26,6 @@ The general philosophy of the app is that each visualiation is made relatively, 
 
 In nearly the whole app, the user's mizer simulations are compared to a base mizer simulation. The base mizer simulation is the default parameters in the mizer_params object, or is set differently by the user. Therefore it is has usually been parameterised to be in an equilibrium state, similar to the real ecosystem that it is modelling. Regardless, it is not of the utmost importance if it is not a 1:1 model of the real ecosystem, as the trophic dynamics due to the user imposed perturbations are what is worth investigating.
 
-## Changing Time
-
-For every part in the app, it is possible to change the time that is plotted without having to rerun the simulation itself. When you run the simulation, the 'Time Range' slider will be shortened to the time that you chose, a +'1 / -1 year' button and a 'Reset Time' button will be added. Now, if you change the 'Time Range', it will keep the same simulation, but change the year that you are plotting, so it is much faster than running mizer again. The '+1 / -1  year' buttons do the same but make it easier to change at a smaller scale. 
-
-To rerun a simulation, you must press 'Reset Time' to make the 'Time Range' slider act as as it did previously, otherwise you will not be able to run the simulation further in time than the previous.
-
-### Time
-
-Each plot in the app plots the time over a 3 year period, so +1 and -1 the year that the user chose. It is coded as such because plotting a single year will plot the peaks or troughs of an oscillation, so means that an outlier year will cloud analysis. Therefore, plotting the mean over 3 years will present a better idea of the effect of the perturbation.
-
 ## Single Species
 
 The single species section opens on app start and is intended to allow the user to understand the trophic role of a given species and the trophic interactions that any perturbations may result in. Only one species is changed and the rest of the model is kept the same, then the user can analyse the repercussions of their imposed change. 
@@ -103,6 +93,16 @@ Similarly to the 'Species' section, each feeding guild is plotted relative and a
 The information about where the guilds come from and how they can be calculated is from [Murray et al. 2022](https://oap-cloudfront.ospar.org/media/filer_public/a1/73/a173bfad-42b0-4f87-ab5d-e1cd5d2574d1/p00856_pilot_assessment_feeding_guild_qsr23.pdf) - Pilot Assessment of Feeding Guilds.
 
 ![](images/guild.png){width=50%}
+
+## Changing Time
+
+For every part in the app, it is possible to change the time that is plotted without having to rerun the simulation itself. When you run the simulation, the 'Time Range' slider will be shortened to the time that you chose, a +'1 / -1 year' button and a 'Reset Time' button will be added. Now, if you change the 'Time Range', it will keep the same simulation, but change the year that you are plotting, so it is much faster than running mizer again. The '+1 / -1  year' buttons do the same but make it easier to change at a smaller scale. 
+
+To rerun a simulation, you must press 'Reset Time' to make the 'Time Range' slider act as as it did previously, otherwise you will not be able to run the simulation further in time than the previous.
+
+### Time
+
+Each plot in the app plots the time over a 3 year period, so +1 and -1 the year that the user chose. It is coded as such because plotting a single year will plot the peaks or troughs of an oscillation, so means that an outlier year will cloud analysis. Therefore, plotting the mean over 3 years will present a better idea of the effect of the perturbation.
 
 ## Fishing Strategy
 

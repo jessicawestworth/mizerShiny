@@ -1133,7 +1133,7 @@ server <- function(input, output, session) {
 # NOTE - FOR UI, all of the code has tagAppendAttributes, which makes it confusing, but it is necessary
 #as you have to label the sections of the code to be able to put it into the tutorial of the app.
 
-ui <- fluidPage(introjsUI(), shinyjs::useShinyjs(),
+ui <- fluidPage(rintrojs::introjsUI(), shinyjs::useShinyjs(),
                 tags$head(
                   tags$link(rel = "stylesheet", type = "text/css", href = "app.css"),
 
