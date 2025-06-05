@@ -3,8 +3,6 @@
 
 # mizerShiny
 
-[Make-Changes
-(HTML)](https://htmlpreview.github.io/?https://github.com/CefasRepRes/mizerShiny/raw/refs/heads/main/doc/Make-Changes.html)
 The goal of mizerShiny is to provide a frontend for running
 [mizer](https://besjournals.onlinelibrary.wiley.com/doi/10.1111/2041-210X.12256)
 models, so that a wider range of people can analyse mizer outputs. It
@@ -28,9 +26,7 @@ mizerShiny()
 
 Click the `Page Guide` button on the top right to get a basic
 explanation of the current page when in the app. Detailed information
-can be found in the \<a
-href=“<https://github.com/CefasRepRes/mizerShiny/raw/refs/heads/main/doc/Make-Changes.html>
-download\>Make‐Changes (HTML)</a> vignette.
+can be found in the [Make-Changes](doc/Make-Changes.pdf) vignette.
 
 Generally for each page, change the model on the left configuration
 panel, press `Run Simulation` and then analyse the ecosystem impacts on
