@@ -37,6 +37,7 @@ the new defaults on future launches.}
 Launch mizerShiny
 }
 \examples{
+\dontrun{
 mizerShiny()
 
 #Load a new mizerParams object
@@ -51,6 +52,7 @@ mizerShiny(mizerParams = NS_params, baseSpSim=simbio, baseFishSim=simfish)
 #If you like this and want to run it quicker, use REPLACE.
 mizerShiny(mizerParams = NS_params, baseSpSim=simbio, baseFishSim=simfish, REPLACE=TRUE)
 #Then this will load the same
-mizerShiny()
 
+mizerShiny()
+}
 }

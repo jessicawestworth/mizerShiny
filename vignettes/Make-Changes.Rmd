@@ -13,7 +13,7 @@ Here contains information about how to load in your own `mizerParam` objects and
 
 ## Load new mizerParams and mizerSims
 
-Firstly, the `mizerShiny()` function itself is coded for mizer models to be quickly loaded. It contains the argument mizerParams, this is defaulted as NS_params. The `mizerParam` objects is saved inside the folder 'Including/mizerParam', you can replace it directly there. Or more easily when calling mizerShiny(), change the mizerParams argument to your `mizerParams` object. If you want to load it without calling the `mizerParams` argument each time, use REPLACE = TRUE to save your new mizerParams object in the mizerParams folder. 
+Firstly, the `mizerShiny()` function itself is coded for mizer models to be quickly loaded. It contains the argument mizerParams that allows you to load any mizerParams object, this is defaulted as NS_params. The `mizerParam` object is loaded from the folder 'inst/Including/mizerParam'.
 
 ```{r, eval = F}
 
@@ -21,8 +21,7 @@ mizerShiny(mizerParams = YourParams)
 
 ```
 
-
-As the app relies on comparison with 'base' mizerSim objects, you may want to change these. The baseSpSim argument provides the 'base' mizerSim object for the 'Single Species' section, and the baseFishSim argument provides the same for the 'Fishery Strategy' section. 
+As the app relies on comparison with 'base' mizerSim objects, you may want to change these. The `baseSpSim` argument provides the 'base' mizerSim object for the 'Single Species' section, and the `baseFishSim` argument provides the same for the 'Fishery Strategy' section. These are loaded from the folder 'inst/Including/mizerSim'. 
 
 ```{r, eval=FALSE}
 
@@ -51,13 +50,14 @@ mizerShiny(mizerParams = YourParams,
            REPLACE = TRUE)
 
 #Then calling mizerShiny() will load your mizerParams and mizerSim objects
+
 #To get back to the NS_params sims, either reinstall the package or repeat the process with NS_params.
 
 ```
 
-The process outlined here is also discussed in the mizerShiny documentation. 
+The process outlined here is also discussed in the `mizerShiny()` documentation. 
 
-The amount of time that a User can project forward, the 'Time Range' slider thats defaulted to 100, is changed depending on the `mizerSim` object provided. It is set to whatever the time is in the `mizerSim`, minus 2, then divided by two. It is required for the base simulation to be longer than the User set sim, as the 'Species' and 'Guild' tabs include bars which are 2x the Users chosen 'Time Range'. 
+The amount of time that a User can project forward, set by the 'Time Range' slider in the app, is changed depending on the `mizerSim` object provided. It is set to whatever the time is in the `mizerSim`, minus 2, then divided by two. It is required for the base simulation to be longer than the User set sim, as the 'Species' and 'Guild' tabs include bars which are 2x the Users chosen 'Time Range'. 
 
 ## Add new plotting functions.
 
@@ -90,21 +90,61 @@ Navigate to the `UI` section (faster way is to find an output ID in the same out
 ```{r, eval=FALSE}
 
 
-                          tabsetPanel(
-                            id = "fishy_plots",
-                            tabPanel(title = "Species", plotlyOutput("fishspeciesPlot",   height = "100%")),
-                            tabPanel(title = "Yield",   plotlyOutput("yieldPlot",         height = "100%")),
-                            tabPanel(title = "Size",    plotlyOutput("fishsizePlot",      height = "55vh")),
-                            if (app_exists("Including", "guilds_information", "checkGuilds",
-                                           "guildparams_preprocessed.Rdata")) {
-                            tabPanel(title = "Guild",   plotlyOutput("fishguildPlot",     height = "100%"))
-                            },
-                            tabPanel(title = "Spectra", plotlyOutput("spectrumPlot",      height = "100%")),
-                            tabPanel(title = "Diet",    plotlyOutput("fishdietsinglePlot", height = "100%")),
-                            if (app_exists("Including", "Nutrition", "checkNutrition", "nutrition.csv")) {
-                            tabPanel(title = "Nutrition", plotlyOutput("nutritionplot", height = "100%"))
-                            }
+
+                          div(
+                            class = "plot-card",
+                            style = "flex: 4.5; height:50vh; display:flex; flex-direction:column; overflow: hidden; margin-top: -0.5rem",
+                            tabsetPanel(
+                              id = "fishy_plots",
+                              tabPanel(
+                                title = "Species",
+                                div(style = "flex:1; display:flex;",
+                                    plotlyOutput("fishspeciesPlot", height = "100%", width = "100%")
+                                )
+                              ),
+                              tabPanel(
+                                title = "Yield",
+                                div(style = "flex:1; display:flex;",
+                                    plotlyOutput("yieldPlot", height = "100%", width = "100%")
+                                )
+                              ),
+                              tabPanel(
+                                title = "Size",
+                                div(style = "flex:1; display:flex;",
+                                    plotlyOutput("fishsizePlot", height = "100%", width = "100%")
+                                )
+                              ),
+                              if (app_exists("Including", "guilds_information", "checkGuilds", "guildparams_preprocessed.Rdata")) {
+                                tabPanel(
+                                  title = "Guild",
+                                  div(style = "flex:1; display:flex;",
+                                      plotlyOutput("fishguildPlot", height = "100%", width = "100%")
+                                  )
+                                )
+                              },
+                              tabPanel(
+                                title = "Spectra",
+                                div(style = "flex:1; display:flex;",
+                                    plotlyOutput("spectrumPlot", height = "100%", width = "100%")
+                                )
+                              ),
+                              tabPanel(
+                                title = "Diet",
+                                div(style = "height:50vh; display:flex;",
+                                    plotlyOutput("fishdietsingleplot", height = "100%", width = "100%")
+                                )
+                              ),
+                              if (app_exists("Including", "Nutrition", "checkNutrition", "nutrition.csv")) {
+                                tabPanel(
+                                  title = "Nutrition",
+                                  div(style = "flex:1; display:flex;",
+                                      plotlyOutput("nutritionplot", height = "100%", width = "100%")
+                                  )
+                                )
+                              }
+                            )
                           )
+                        
                               
 
 ```

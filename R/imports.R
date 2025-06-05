@@ -1,8 +1,3 @@
-# R/imports.R  ──────────────────────────────────────────────────────────
-#' Internal: import everything we need
-#'
-#' DO NOT export this object – it only carries the @import tags.
-#'
 #' @import shiny
 #' @import bslib
 #' @import dplyr

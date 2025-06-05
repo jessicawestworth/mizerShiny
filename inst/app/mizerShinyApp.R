@@ -1572,7 +1572,6 @@ data-bs-content='Slider value indicates the change in mortality of a species. Ex
                             style = "flex: 4.5; height:50vh; display:flex; flex-direction:column; overflow: hidden; margin-top: -0.5rem",
                             tabsetPanel(
                               id = "fishy_plots",
-                              #style = "flex:1; display:flex; flex-direction:column;",
                               tabPanel(
                                 title = "Species",
                                 div(style = "flex:1; display:flex;",
@@ -1624,8 +1623,7 @@ data-bs-content='Slider value indicates the change in mortality of a species. Ex
                         ),
 
                         card_body(
-                         # style = "flex: 1.3; overflow: visible",
-                          style = "flex: 1.46",
+                          style = "flex: auto",
                           conditionalPanel(
                             condition = "input.fishy_plots == 'Yield'",
                               div(style = "margin-bottom:1.5rem;",
@@ -1634,7 +1632,7 @@ data-bs-content='Slider value indicates the change in mortality of a species. Ex
                             tags$div(
                               style = "display: flex; align-items: center;",
 
-                              HTML("<span style='margin-top:0px; margin-bottom:0.5rem; margin-right: 0.7em;font-weight:500; color: var(--bs-heading-color); line-height:1.2;'>Time Range</span>"),
+                              HTML("<span style='margin-top:0px; margin-bottom:0.5rem; margin-right: 0.7em;font-weight:500; color: var(--bs-heading-color); line-height:1.2;'>Yield Time Range</span>"),
                                 style = "margin: 0 15px 0 0;"
                               ,
                               sliderInput(

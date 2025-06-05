@@ -57,7 +57,7 @@ To run the simulation, first you must select the time you want the simulation to
 
 ### Mortality
 
-The mortality section works in a very similar way to the biomass, but instead the change imposed is constant throughout the simulation. At the starting conditions, due to predation, fishing and external mortality (starvation and unmodelled species), each size class of each species is subject to a mortality rate, specifically how much of the biomass in that size class is removed from the size class. The value of mortality for each size class for the chosen species is multiplied by the value chosen on the slider, and then this is added to each size class. The mortality you have added is then imposed on the chosen species for the entirety of the simulation. It is the same value of mortality across all time, so for example a value of 0.05 is not a 5% increase in mortality at every time point, it is an increase of 5% of the initial mortality rate at every timepoint. The distinction here is that the mortality will change across the simulation, as it is due to the predation and fishing, both of which change across the simulation. 
+The mortality section works in a very similar way to the biomass, but instead the change imposed is constant throughout the simulation. At the starting conditions, due to predation, fishing and external mortality (starvation and unmodelled species), each size class of each species is subject to a mortality rate, specifically how much of the biomass in that size class is removed from the size class. The value of mortality for each size class for the chosen species is multiplied by the value chosen on the slider, and then this is added to each size class. The mortality you have added is then imposed on the chosen species for the entirety of the simulation. It is the same value of mortality across all time, so for example a value of 0.05 is not a 5% increase in mortality at every time point, it is an addition of 5% of the initial mortality rate at every timepoint. The distinction here is that the mortality rate will change across time in the simulation, as it is due to the predation and fishing, both of which change across the simulation, so a 5% increase would have varying and unpredictable effects. 
 
 See the example below, where the black line is the mortality rate of one species at the start of the simulation, and the dashed line is that mortality with an additional 50%. The difference between the these two lines would be added on to the chosen species for every time step in the simulation. 
 
@@ -77,56 +77,67 @@ Navigate between the plots pressing the tabs at the top. Each plot uses [plotly]
 
 ### Species
 
-The 'Species' plot visualises the change in species biomass between the base mizer simulation and the changed mizer simulation at the time point chosen. The colour indicates if the change was negative or positive. Three time points are plotted, the chosen time point, a time 1/2 of the chosen, and 2x the chosen. The shade indicates the time point, from darkest to lightest indicating 1/2 of the time point, the chosen time point and 2x the time point. Plotting multiples point in time across the simulation helps to understand the oscillatory nature of trophic interactions. 
+The 'Species' plot visualises the change in species biomass between the base mizer simulation and the changed mizer simulation at the time point chosen. The colour indicates if the change was negative or positive. Three time points are plotted, the chosen time point, a time 1/2 of the chosen, and 2x the chosen. The shade indicates the time point, from darkest to lightest indicating 1/2 of the time point, the chosen time point and 2x the time point. Plotting multiples point in time across the simulation helps to understand the oscillatory nature of trophic interactions. Use the `Chosen Only` button to only plot the chosen time range, useful in conjunction with the `Time Range` behaviour highlighted in 'Change Time' later.
 
-It is possible on this plot to change the order of species on the X axis, done so using the choice box below the plot. Clicking custom allows the user to decide the order, but the user can also choose Preset, Guild, Size. Changing the order allows for easier analysis of trophic interactions between species.
+It is possible on this plot to change the order of species on the X axis, done so using the choice box below the plot. Clicking custom allows the user to decide the order, but the user can also choose Unordered, Guild, Size. Changing the order allows for easier analysis of trophic interactions between species.
 
 ![](images/species.png){width=50%}
 
 ### Size
 
-The size tab informs the user of ecosystem wide changes to the size spectrum. The size spectrum is the distribution of biomass, or individuals, across sizes. Size is a very important aspect to marine ecosystems, it relates to what fish can eat and how fast they can swim. The plot found here is the community size spectrum, so this shows the change in biomass at each size for every species of fish. It is useful for looking at broader trends and to observe trophic cascades, whereby a decrease in one size leads to an increase in its prey size, or the converse.
+The size tab informs the user of ecosystem wide changes to the size spectrum. The size spectrum is the distribution of biomass, or individuals, across sizes. Size is a very important aspect to marine ecosystems, it relates to what fish can eat and how fast they can swim. The plot found here is the community size spectrum, so this shows the change in biomass at each size for every species of fish. It is useful for looking at broader trends and to observe ecosystem-wide trophic cascades, whereby a decrease in one size leads to an increase in its prey size, or the converse.
 
-Use the log button to log / unlog the X axis. A logged X axis allows for greater resolution of the larvae sizes.
+Use the log button to log / unlog the X axis. A logged X axis allows for greater resolution of the smaller larvae sizes.
 
 ![](images/size.png){width=50%}
 
 ### Guild
 
-Guild stands for 'Feeding Guild', which is a characterisation of respective fish species and their life stages into similar trophic groups where they have similar roles in the ecosystem. It is useful for looking as to how ecosystem dynamics may be changing. 
+Guild stands for 'Feeding Guild', which is a characterisation of respective fish species and their life stages into trophic groups where they have similar roles in the ecosystem. It is useful for looking as to how ecosystem dynamics may be changing. 
 
 Similarly to the 'Species' section, each feeding guild is plotted relative and across multiple timescales. 
 
 The information about where the guilds come from and how they can be calculated is from [Murray et al. 2022](https://oap-cloudfront.ospar.org/media/filer_public/a1/73/a173bfad-42b0-4f87-ab5d-e1cd5d2574d1/p00856_pilot_assessment_feeding_guild_qsr23.pdf) - Pilot Assessment of Feeding Guilds.
 
+There are 4 feeding guilds. Planktivore, benthivore, pisco-crustivore and piscovore. Each feeding guild preys feeds upon different aspects of the food web but all feeding guilds are omnivorous. The plantivore feeds lower in the food web, mainly on plankton. The benthivore will feed on the sea floor, have a larger body size and feed on different resources. Similarly the pisco-crustivore will have feed on different resources with a larger body size. The piscovore will have the largest body size and will feed on the highest on the food web. 
+
 ![](images/guild.png){width=50%}
+
+### Diet
+
+Understanding how the ecosystem dynamics may change must involve looking at the changing diet of fish, as it can inform you of the causes behind the ecosystem effects. For example a decrease in two prey species of a given predator species, following increased fishing on only one of the prey species, may be due to the predator species having to eat more of the other prey species due to fishery-caused decline in their primary prey.
+
+In the 'diet' plot, you choose the species that you want to investigate, and it will plot what species contribute to its diet across the species size. It will include a 'resource' species, which is a very general model of the plankton which the smaller sizes of fish need for food. 
+
+![](images/diet.png){width=50%}
+
+The legend can be utilised here to find out specific changes, as it is difficult to analyse from the plot alone. Selecting only one species by double clicking the legend will allow direct comparison. The plot below shows that if Plaice were to have higher starting biomass, Sole would eat less Sprat (only by a little), as it has more Plaice to eat. 
+
+![](images/dietexp.png){width=50%}
 
 ## Changing Time
 
 For every part in the app, it is possible to change the time that is plotted without having to rerun the simulation itself. When you run the simulation, the `Time Range` slider will be shortened to the time that you chose, a `+1 year` / `-1  year` button and a `Reset Time` button will be added. Now, if you change the `Time Range`, it will keep the same simulation, but change the year that you are plotting, so it is much faster than running mizer again. The `+1 year` / `-1  year` buttons do the same but make it easier to change at a smaller scale. 
 
-To rerun a simulation, you must press `Reset Time` to make the `Time Range` slider act as as it did previously, otherwise you will not be able to run the simulation further in time than the previous.
+To rerun a simulation, you must press `Reset Time` to make the `Time Range` slider reset, otherwise you will not be able to run the simulation further in time than the previous. 
 
 ![](images/newitme.png){width=50%}
 
 ### Time
 
-Each plot in the app plots the time over a 3 year period, so +1 and -1 the year that the user chose. It is coded as such because plotting a single year will plot the peaks or troughs of an oscillation, so means that an outlier year will cloud analysis. Therefore, plotting the mean over 3 years will present a better idea of the effect of the perturbation.
+Each plot in the app plots the time over a 3 year period, so over a range +1 and -1 of the year that the user chose. It is coded as such because plotting a single year could plot the peaks or troughs of biomass oscillations, and would make it difficult to analyse the general trends. Therefore, plotting the mean over 3 years will present a better idea of the effect of the perturbation.
 
 ## Fishing Strategy
 
-The next main section of the app can be accessed from the top of the page. It allows the user to change the fishing effort imposed by the fleets in the mizer model. Fleets in mizer generally try to model vessels which select approximately the same size classes and species of fish. Then, the fishing effort that this fleet imposes on the ecosystem can be changed. This is what this section does, allows you to change the fishing effort away from the current fishing mortality. 
+The next main section of the app can be accessed from the top of the page. It allows the user to change the fishing effort imposed by the fleets in the mizer model. Fleets in mizer generally try to model vessels which select approximately the same size and species of fish. The fishing effort that this fleet imposes on the ecosystem can be changed. Which is what this section does - it allows you to change the fishing effort away from the current fishing mortality. 
 
 Find more information about how fishing works in mizer [here](https://sizespectrum.org/mizer/reference/newMultispeciesParams.html?q=fishing#setting-fishing)
 
-Additionally, in this section you can compare 2 different fishing strategies and observe the difference. Each plot will change depending on whether you have decided to compare strategies or run one strategy. Even if you are comparing strategies, both will be plotted relative to the current fishing strategy. Generally, the second simulation you choose will be a dashed line, whereas the first is a solid line.
-
-Use the sliders in the panel to change the fishing fleets. 
-
+Additionally, in this section you can compare 2 different fishing strategies and observe the difference. Even if you are comparing strategies, both will be plotted relative to the current fishing strategy. Generally, the second simulation you choose will be a dashed line, whereas the first is a solid line. To compare fishing strategies, choose the first strategy on the Sim 1 tab, then choose the second on the Sim 2 tab. The Sim 2 tab will have a 'Compare' button that will run both simulations. The time range that both are ran for is decided by `Time Range` on the Sim 2 tab.
 
 ![](images/fleet.png){width=200px}
 
-Scroll past this to run the simulation.
+Scroll past this to run the simulation - using either `Run Simulation` or `Compare`.
 
 ### Plots
 
@@ -138,39 +149,27 @@ The fishery strategy section contains the same plots as the Single Species, but 
 
 There is a full description in the 'Legend'.
 
-In this section it is useful to remember that plotly allows you to click away unwanted information that is included in the plot. If you only want to look at one species, you can double click it on the legend to remove all other species, and click them to add them back. (Also, there are multiple legends combined into one, so there will be multiple instances of a each species)
+In this section it is useful to remember that plotly allows you to click away unwanted information that is included in the plot. If you only want to look at one species, you can double click it on the legend to remove all other species, and click them to add them back. (There are multiple legends combined into one, so there will be multiple instances of a each species)
 
-It is also possible to average yield over chosen years using the slider 'Time Range' below the plot. It will only plot the total yield over the years you have chosen, so that you are able to analyse how it changes. 
+It is also possible to average yield over chosen years using the slider `Yield Time Range` below the plot. It will only plot the yield over the years you have chosen, so that you are able to analyse how it changes. 
 
 ![](images/yield.png){width=50%}
 
 ### Spectra
 
-The spectra plot is similar to the 'size' plot outlined prior, but it does not plot all species together, it separates each spectrum into each species. It is useful to look at how different fishing strategies effect species of different sizes, but can be difficult to recognise changes due to the large range of biomass that is plotted. 
+The spectra plot is similar to the 'size' plot outlined prior, but it does not plot all species together, it separates each size spectrum into each species. It is useful to look at how different fishing strategies effect species of different sizes, but it can be difficult to recognise changes due to the large range of biomass that is plotted. 
 
 The X axis can be controlled by the log button. 
 
 ![](images/spectra.png){width=50%}
 
-It is possible to use the plotly functionality here in conjunction with the 'Time Range' slider. Click on species in the legend to remove them, and double click them to remove other species. Then, you can change the time plotted to see how the size spectrum of a species develops over a fishing strategy. 
+It is possible to use the plotly functionality here in conjunction with the `Time Range` slider. Click on species in the legend to remove them, and double click them to remove other species. Then, you can change the time plotted to see how the size spectrum of a species develops over a fishing strategy. 
 
 ![](images/1spectra.png){width=50%}
 
-### Diet
-
-Understanding how the ecosystem dynamics may change due to fishing must involve looking at the changing diet of fish, as it can inform you of the causes behind the ecosystem effects. For example a decrease in two prey species of a given predator species, following increased fishing on only one of the prey species, may be due to the predator species having to eat more of the other prey species due to fishery-caused decline in their primary prey.
-
-In the 'diet' plot, you choose the species that you want to investigate, and it will plot what species contribute to its diet across the species size. It will include a 'resource' species, which is a very general model of the plankton which the smaller sizes of fish need for food. 
-
-![](images/diet.png){width=50%}
-
-The legend can be utilised here to find out specific changes, as it is difficult to analyse from the plot alone. Selecting only one species by double clicking the legend will allow direct comparison. The plot below shows that if Plaice were to have higher starting biomass, Sole would eat less Sprat (only by a little), as it has more Plaice to eat. 
-
-![](images/dietexp.png){width=50%}
-
 ### Nutrition
 
-The nutritional quality of the catch can be observed in this tab, it works by taking nutritional information per 100g of each species, and multiplying the species composition of the catch by these values to get the total nutrient amount. It is then compared against the current fishing scenario. The plot must be analysed with care, as it works off biomass values, if there is a higher total catch, it will have a greater nutritional value, not because the species caught are better nutritionally. It is best to use this in company with the yield plot. 
+The nutritional quality of the catch can be observed in this tab, it works by taking nutritional information per 100g of each species, and multiplying the species composition of the catch by these values to get the total nutrient amount. It is then compared against the current fishing scenario. The plot must be analysed with care, as it works using biomass values, if there is a higher total catch, it will have a greater nutritional value, not because the species caught are better nutritionally. It is best to use this in company with the yield plot. 
 
 The values of nutrition are taken from various databases, which is outlined in the READme file in the nutrition folder.
 

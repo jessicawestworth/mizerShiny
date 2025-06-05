@@ -27,6 +27,7 @@
 #             REPLACE = TRUE)
 #  
 #  #Then calling mizerShiny() will load your mizerParams and mizerSim objects
+#  
 #  #To get back to the NS_params sims, either reinstall the package or repeat the process with NS_params.
 #  
 
@@ -48,21 +49,61 @@
 ## ----eval=FALSE---------------------------------------------------------------
 #  
 #  
-#                            tabsetPanel(
-#                              id = "fishy_plots",
-#                              tabPanel(title = "Species", plotlyOutput("fishspeciesPlot",   height = "100%")),
-#                              tabPanel(title = "Yield",   plotlyOutput("yieldPlot",         height = "100%")),
-#                              tabPanel(title = "Size",    plotlyOutput("fishsizePlot",      height = "55vh")),
-#                              if (app_exists("Including", "guilds_information", "checkGuilds",
-#                                             "guildparams_preprocessed.Rdata")) {
-#                              tabPanel(title = "Guild",   plotlyOutput("fishguildPlot",     height = "100%"))
-#                              },
-#                              tabPanel(title = "Spectra", plotlyOutput("spectrumPlot",      height = "100%")),
-#                              tabPanel(title = "Diet",    plotlyOutput("fishdietsinglePlot", height = "100%")),
-#                              if (app_exists("Including", "Nutrition", "checkNutrition", "nutrition.csv")) {
-#                              tabPanel(title = "Nutrition", plotlyOutput("nutritionplot", height = "100%"))
-#                              }
+#  
+#                            div(
+#                              class = "plot-card",
+#                              style = "flex: 4.5; height:50vh; display:flex; flex-direction:column; overflow: hidden; margin-top: -0.5rem",
+#                              tabsetPanel(
+#                                id = "fishy_plots",
+#                                tabPanel(
+#                                  title = "Species",
+#                                  div(style = "flex:1; display:flex;",
+#                                      plotlyOutput("fishspeciesPlot", height = "100%", width = "100%")
+#                                  )
+#                                ),
+#                                tabPanel(
+#                                  title = "Yield",
+#                                  div(style = "flex:1; display:flex;",
+#                                      plotlyOutput("yieldPlot", height = "100%", width = "100%")
+#                                  )
+#                                ),
+#                                tabPanel(
+#                                  title = "Size",
+#                                  div(style = "flex:1; display:flex;",
+#                                      plotlyOutput("fishsizePlot", height = "100%", width = "100%")
+#                                  )
+#                                ),
+#                                if (app_exists("Including", "guilds_information", "checkGuilds", "guildparams_preprocessed.Rdata")) {
+#                                  tabPanel(
+#                                    title = "Guild",
+#                                    div(style = "flex:1; display:flex;",
+#                                        plotlyOutput("fishguildPlot", height = "100%", width = "100%")
+#                                    )
+#                                  )
+#                                },
+#                                tabPanel(
+#                                  title = "Spectra",
+#                                  div(style = "flex:1; display:flex;",
+#                                      plotlyOutput("spectrumPlot", height = "100%", width = "100%")
+#                                  )
+#                                ),
+#                                tabPanel(
+#                                  title = "Diet",
+#                                  div(style = "height:50vh; display:flex;",
+#                                      plotlyOutput("fishdietsingleplot", height = "100%", width = "100%")
+#                                  )
+#                                ),
+#                                if (app_exists("Including", "Nutrition", "checkNutrition", "nutrition.csv")) {
+#                                  tabPanel(
+#                                    title = "Nutrition",
+#                                    div(style = "flex:1; display:flex;",
+#                                        plotlyOutput("nutritionplot", height = "100%", width = "100%")
+#                                    )
+#                                  )
+#                                }
+#                              )
 #                            )
+#  
 #  
 #  
 
