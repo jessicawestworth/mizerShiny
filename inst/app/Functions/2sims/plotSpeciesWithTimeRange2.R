@@ -1,4 +1,3 @@
-
 process_sim <- function(harvestedprojection, unharvestedprojection, year1, year2) {
 
   unharvestedbio <- getBiomass(unharvestedprojection)[year1:year2, , drop = FALSE] %>%
@@ -54,10 +53,8 @@ process_sim <- function(harvestedprojection, unharvestedprojection, year1, year2
   plot_data$fill_group <- interaction(plot_data$percentage_diff >= 0, plot_data$class)
   plot_data$fill_group <- factor(
     plot_data$fill_group,
-    levels = c("FALSE.short", "FALSE.chosen", "FALSE.long",
-               "TRUE.short", "TRUE.chosen", "TRUE.long"),
-    labels = c("Short, Negative", "Chosen, Negative", "Long, Negative",
-               "Short, Positive", "Chosen, Positive", "Long, Positive")
+    levels = c("FALSE.short", "TRUE.short", "FALSE.chosen", "TRUE.chosen", "FALSE.long", "TRUE.long"),
+    labels = c("Short, Negative", "Short, Positive", "Chosen, Negative", "Chosen, Positive", "Long, Negative", "Long, Positive")
   )
   return(plot_data)
 }
@@ -78,10 +75,10 @@ plotSpeciesWithTimeRange2 <- function(harvestedprojection1, harvestedprojection2
     labs(x = "Species", y = "% Change") +
     scale_fill_manual(values = c(
       "Short, Negative"  = "#E76F51",
-      "Chosen, Negative" = "#E98C6B",
-      "Long, Negative"   = "#F2A488",
       "Short, Positive"  = "#2FA4E7",
+      "Chosen, Negative" = "#E98C6B",
       "Chosen, Positive" = "#2FA4E7cc",
+      "Long, Negative"   = "#F2A488",
       "Long, Positive"   = "#2FA4E799"
     )) +
     theme_minimal() +

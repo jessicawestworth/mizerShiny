@@ -1,4 +1,3 @@
-
 plotSpeciesWithTimeRange <- function(harvestedprojection, unharvestedprojection, chosentime1, chosentime2,
                                      mode = c("triple", "chosen")) {
 
@@ -95,24 +94,23 @@ plotSpeciesWithTimeRange <- function(harvestedprojection, unharvestedprojection,
 
   percentage_diff$fill_group <- factor(
     percentage_diff$fill_group,
-    levels = c("FALSE.short", "FALSE.chosen", "FALSE.long",
-               "TRUE.short", "TRUE.chosen", "TRUE.long"),
-    labels = c("Short, Negative", "Chosen, Negative", "Long, Negative",
-               "Short, Positive", "Chosen, Positive", "Long, Positive")
+    levels = c("FALSE.short", "TRUE.short", "FALSE.chosen", "TRUE.chosen", "FALSE.long", "TRUE.long"),
+    labels = c("Short, Negative", "Short, Positive", "Chosen, Negative", "Chosen, Positive", "Long, Negative", "Long, Positive")
   )
 
   percentage_diff$Percentage <- percentage_diff$percentage_diff
   percentage_diff$Class <- percentage_diff$fill_group
+  
   ggplot(percentage_diff, aes(x = Species, y = Percentage, fill = Class)) +
     geom_bar(stat = "identity", position = position_dodge(width = 0.9)) +
     geom_hline(yintercept = 0, color = "grey", linetype = "dashed", size = 0.5)+
     labs(x = "Species", y = "% Change") +
     scale_fill_manual(values = c(
       "Short, Negative" = "#E76F51",
-      "Chosen, Negative" = "#E98C6B",
-      "Long, Negative" = "#F2A488",
       "Short, Positive" = "#2FA4E7",
+      "Chosen, Negative" = "#E98C6B",
       "Chosen, Positive" = "#2FA4E7cc",
+      "Long, Negative" = "#F2A488",
       "Long, Positive" = "#2FA4E799"
     )) +
     theme_minimal() +
