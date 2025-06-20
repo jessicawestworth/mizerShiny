@@ -78,8 +78,8 @@ load_or_project("Unharvested", "unharvestedprojection")
 load_or_project("Unfished",    "unfishedprojection")
 
 #Find years for the Time Range
-sp_max_year   <- floor((dim(unharvestedprojection@n)[1] - 2) / 2)
-fish_max_year <- floor((dim(unfishedprojection  @n)[1] - 2) / 2)
+sp_max_year   <- max(16, floor((dim(unharvestedprojection@n)[1] - 2) / 2))
+fish_max_year <- max(16, floor((dim(unfishedprojection  @n)[1] - 2) / 2))
 
 # guild & nutrition data ----------------------------------------
 guild_file <- app_path("Including", "guilds_information", "checkGuilds",
