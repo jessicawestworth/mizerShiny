@@ -105,12 +105,12 @@ guildplot <- function(harvestedprojection, unharvestedprojection,
     geom_hline(yintercept = 0, colour = "grey", linetype = "dashed", linewidth = 0.5) +
     scale_fill_manual(
       values = c(
-        "Short, Negative"  = "#E76F51",
-        "Short, Positive"  = "#2FA4E7",
+        "Short, Negative"  = "#F2A488",
+        "Short, Positive"  = "#2FA4E799",
         "Chosen, Negative" = "#E98C6B",
         "Chosen, Positive" = "#2FA4E7cc",
-        "Long, Negative"   = "#F2A488",
-        "Long, Positive"   = "#2FA4E799"
+        "Long, Negative"   = "#E76F51",
+        "Long, Positive"   = "#2FA4E7"
       ),
       drop = FALSE
     ) +
