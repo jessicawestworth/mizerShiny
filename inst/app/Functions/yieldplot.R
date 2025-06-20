@@ -1,4 +1,3 @@
-
 generateYieldDashboard <- function(NS_sim,
                                highlight_times = NULL) {
   nSim <- length(NS_sim)
@@ -38,7 +37,7 @@ generateYieldDashboard <- function(NS_sim,
   }))
   spline_plotly <- (
     ggplot(sp_all, aes(time, value, color = sp, linetype = sim)) +
-      geom_line(size = 1) +
+      geom_line(linewidth = 1) +
       labs(x = "Time", y = "Yield") +
       theme_minimal() +
       theme(axis.text.x = element_text(hjust = 1))
@@ -59,7 +58,7 @@ generateYieldDashboard <- function(NS_sim,
   }))
   gearline_plotly <- (
     ggplot(gear_all, aes(time, value, color = gear, linetype = sim)) +
-      geom_line(size = 1) +
+      geom_line(linewidth = 1) +
       geom_line(
         data = gear_all %>% group_by(time,sim) %>% summarise(total = sum(value)),
         aes(time, total, linetype = sim), colour = "grey"

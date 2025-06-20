@@ -159,7 +159,7 @@ guildplot_both <- function(harvestedprojection1, harvestedprojection2,
 
   ggplot(joinedguilds, aes(Guild, Percentage, fill = Class)) +
     geom_col(position = position_dodge(width = 0.9)) +
-    geom_hline(yintercept = 0, colour = "grey", linetype = "dashed", size = 0.5) +
+    geom_hline(yintercept = 0, colour = "grey", linetype = "dashed", linewidth = 0.5) +
     scale_fill_manual(
       values = c(
         "Short, Negative"  = "#E76F51",

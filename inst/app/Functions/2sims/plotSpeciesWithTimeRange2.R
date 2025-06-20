@@ -71,7 +71,7 @@ plotSpeciesWithTimeRange2 <- function(harvestedprojection1, harvestedprojection2
 
   p <- ggplot(plot_df, aes(x = Species, y = percentage_diff, fill = fill_group)) +
     geom_bar(stat = "identity", position = position_dodge(width = 0.9)) +
-    geom_hline(yintercept = 0, color = "grey", linetype = "dashed", size = 0.5) +
+    geom_hline(yintercept = 0, color = "grey", linetype = "dashed", linewidth = 0.5) +
     labs(x = "Species", y = "% Change") +
     scale_fill_manual(values = c(
       "Short, Negative"  = "#E76F51",
