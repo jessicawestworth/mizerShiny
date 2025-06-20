@@ -1,4 +1,3 @@
-
 plotNutrition <- function(sims, ref, step) {
   nut_cols <- setdiff(names(nut), "species")
 
@@ -62,10 +61,17 @@ nutrition_file <- app_path(
 )
 
 if (file.exists(nutrition_file)) {
-  nut <- read_csv(
-    nutrition_file,
-    locale        = locale(encoding = "ISO-8859-1"),
-    show_col_types = FALSE
+  nut <- withCallingHandlers(
+    read_csv(
+      nutrition_file,
+      locale        = locale(encoding = "ISO-8859-1"),
+      show_col_types = FALSE
+    ),
+    message = function(m) {
+      if (grepl("New names:", m$message)) {
+        invokeRestart("muffleMessage")
+      }
+    }
   ) %>%
     select(
       common_name,

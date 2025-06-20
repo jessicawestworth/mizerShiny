@@ -1,134 +1,129 @@
+guildplot <- function(harvestedprojection, unharvestedprojection,
+                      year1, year2,
+                      guildparams, celticsim,
+                      mode = c("chosen", "triple")) {
 
-  guildplot <- function(harvestedprojection, unharvestedprojection,
-                        year1, year2,
-                        guildparams, celticsim,
-                        mode = c("chosen", "triple")) {
+  mode <- match.arg(mode)
 
-    mode <- match.arg(mode)
+  harvested    <- plotSpectra(harvestedprojection,
+                              time_range = year1:year2,
+                              return_data = TRUE)
+  unharvested  <- plotSpectra(unharvestedprojection,
+                              time_range = year1:year2,
+                              return_data = TRUE)
 
-    harvested    <- plotSpectra(harvestedprojection,
-                                time_range = year1:year2,
-                                return_data = TRUE)
-    unharvested  <- plotSpectra(unharvestedprojection,
-                                time_range = year1:year2,
-                                return_data = TRUE)
+  if (mode == "triple") {
+    midpoint   <- ceiling((year1 + year2) / 2)
 
-    if (mode == "triple") {
-      midpoint   <- ceiling((year1 + year2) / 2)
+    mid_short  <- max(1, midpoint %/% 2 - 1) : (midpoint %/% 2 + 1)
+    mid_long   <- (midpoint * 2 - 1) : (midpoint * 2 + 1)
 
-      mid_short  <- max(1, midpoint %/% 2 - 1) : (midpoint %/% 2 + 1)
-      mid_long   <- (midpoint * 2 - 1) : (midpoint * 2 + 1)
-
-      harvestedshort   <- plotSpectra(harvestedprojection,
-                                      time_range = mid_short,
-                                      return_data = TRUE)
-      harvestedlong    <- plotSpectra(harvestedprojection,
-                                      time_range = mid_long,
-                                      return_data = TRUE)
-      unharvestedshort <- plotSpectra(unharvestedprojection,
-                                      time_range = mid_short,
-                                      return_data = TRUE)
-      unharvestedlong  <- plotSpectra(unharvestedprojection,
-                                      time_range = mid_long,
-                                      return_data = TRUE)
-    }
-
-    process_guilds <- function(mizerprojection) {
-
-      assign_guild <- function(dat, rules) {
-        dat <- dat |> dplyr::mutate(Guild = NA_character_)
-        for (i in seq_len(nrow(rules))) {
-          dat <- dat |>
-            dplyr::mutate(
-              Guild = dplyr::case_when(
-                w < 0.05                                      ~ "Plank",
-                is.na(Guild) &
-                  w >= rules$minw[i] & w < rules$maxw[i]      ~ rules$Feeding.guild[i],
-                TRUE                                          ~ Guild
-              )
-            )
-        }
-        dat
-      }
-
-      mizerprojection |>
-        dplyr::group_by(Species) |>
-        dplyr::group_modify(\(.x, .y){
-          rules <- guildparams |>
-            dplyr::filter(Species == unique(.x$Legend))
-          if (nrow(rules) == 0) .x else assign_guild(.x, rules)
-        }) |>
-        dplyr::ungroup() |>
-        tidyr::drop_na(Guild) |>
-        dplyr::group_by(Guild) |>
-        dplyr::summarise(value = mean(value), .groups = "drop")
-    }
-
-    guilds    <- process_guilds(harvested)    |> dplyr::mutate(time = "chosen")
-    unguilds  <- process_guilds(unharvested)  |> dplyr::mutate(time = "chosen")
-
-    if (mode == "triple") {
-      guildsshort <- process_guilds(harvestedshort)   |> dplyr::mutate(time = "short")
-      guildslong  <- process_guilds(harvestedlong)    |> dplyr::mutate(time = "long")
-      unguildsshort <- process_guilds(unharvestedshort) |> dplyr::mutate(time = "short")
-      unguildslong  <- process_guilds(unharvestedlong)  |> dplyr::mutate(time = "long")
-
-      harv_all   <- dplyr::bind_rows(guilds, guildsshort, guildslong)
-      unharv_all <- dplyr::bind_rows(unguilds, unguildsshort, unguildslong)
-    } else {                       # mode == "chosen"
-      harv_all   <- guilds
-      unharv_all <- unguilds
-    }
-
-    joinedguilds <- harv_all |>
-      dplyr::full_join(unharv_all, by = c("Guild","time")) |>
-      dplyr::mutate(percentage_diff = (value.x - value.y) / value.y * 100) |>
-      dplyr::select(Guild, time, percentage_diff)
-
-    joinedguilds$time <- factor(
-      joinedguilds$time,
-      levels = if (mode == "chosen") "chosen" else c("short","chosen","long")
-    )
-    joinedguilds$fill_group <- interaction(joinedguilds$percentage_diff >= 0,
-                                           joinedguilds$time)
-
-    joinedguilds$Class <- factor(
-      joinedguilds$fill_group,
-      levels = c("FALSE.short", "FALSE.chosen", "FALSE.long",
-                 "TRUE.short", "TRUE.chosen", "TRUE.long"),
-      labels = c("Short, Negative", "Chosen, Negative", "Long, Negative",
-                 "Short, Positive", "Chosen, Positive", "Long, Positive")
-    )
-
-    joinedguilds$Percentage <- joinedguilds$percentage_diff
-
-    ## ---- plot -----------------------------------------------------------------
-    ggplot(joinedguilds, aes(Guild, Percentage, fill = Class)) +
-      geom_col(position = position_dodge(width = 0.9)) +
-      geom_hline(yintercept = 0, colour = "grey", linetype = "dashed", size = 0.5) +
-      scale_fill_manual(
-        values = c(
-          "Short, Negative"  = "#E76F51",
-          "Chosen, Negative" = "#E98C6B",
-          "Long, Negative"   = "#F2A488",
-          "Short, Positive"  = "#2FA4E7",
-          "Chosen, Positive" = "#2FA4E7cc",
-          "Long, Positive"   = "#2FA4E799"
-        ),
-        drop = FALSE
-      ) +
-      labs(x = "Guild", y = "Percentage Change") +
-      theme_minimal() +
-      theme(
-        axis.text.x = element_text(size = 14, angle = 90, vjust = 0.5),
-        axis.text.y = element_text(size = 14),
-        legend.position = "none",
-        axis.title = element_text(size = 16)
-      )
-
-
+    harvestedshort   <- plotSpectra(harvestedprojection,
+                                    time_range = mid_short,
+                                    return_data = TRUE)
+    harvestedlong    <- plotSpectra(harvestedprojection,
+                                    time_range = mid_long,
+                                    return_data = TRUE)
+    unharvestedshort <- plotSpectra(unharvestedprojection,
+                                    time_range = mid_short,
+                                    return_data = TRUE)
+    unharvestedlong  <- plotSpectra(unharvestedprojection,
+                                    time_range = mid_long,
+                                    return_data = TRUE)
   }
 
+  process_guilds <- function(mizerprojection) {
+
+    assign_guild <- function(dat, rules) {
+      dat <- dat |> dplyr::mutate(Guild = NA_character_)
+      for (i in seq_len(nrow(rules))) {
+        dat <- dat |>
+          dplyr::mutate(
+            Guild = dplyr::case_when(
+              w < 0.05                                      ~ "Plank",
+              is.na(Guild) &
+                w >= rules$minw[i] & w < rules$maxw[i]      ~ rules$Feeding.guild[i],
+              TRUE                                          ~ Guild
+            )
+          )
+      }
+      dat
+    }
+
+    mizerprojection |>
+      dplyr::group_by(Species) |>
+      dplyr::group_modify(\(.x, .y){
+        rules <- guildparams |>
+          dplyr::filter(Species == unique(.x$Legend))
+        if (nrow(rules) == 0) .x else assign_guild(.x, rules)
+      }) |>
+      dplyr::ungroup() |>
+      tidyr::drop_na(Guild) |>
+      dplyr::group_by(Guild) |>
+      dplyr::summarise(value = mean(value), .groups = "drop")
+  }
+
+  guilds    <- process_guilds(harvested)    |> dplyr::mutate(time = "chosen")
+  unguilds  <- process_guilds(unharvested)  |> dplyr::mutate(time = "chosen")
+
+  if (mode == "triple") {
+    guildsshort <- process_guilds(harvestedshort)   |> dplyr::mutate(time = "short")
+    guildslong  <- process_guilds(harvestedlong)    |> dplyr::mutate(time = "long")
+    unguildsshort <- process_guilds(unharvestedshort) |> dplyr::mutate(time = "short")
+    unguildslong  <- process_guilds(unharvestedlong)  |> dplyr::mutate(time = "long")
+
+    harv_all   <- dplyr::bind_rows(guilds, guildsshort, guildslong)
+    unharv_all <- dplyr::bind_rows(unguilds, unguildsshort, unguildslong)
+  } else {                       # mode == "chosen"
+    harv_all   <- guilds
+    unharv_all <- unguilds
+  }
+
+  joinedguilds <- harv_all |>
+    dplyr::full_join(unharv_all, by = c("Guild","time")) |>
+    dplyr::mutate(percentage_diff = (value.x - value.y) / value.y * 100) |>
+    dplyr::select(Guild, time, percentage_diff)
+
+  joinedguilds$time <- factor(
+    joinedguilds$time,
+    levels = if (mode == "chosen") "chosen" else c("short","chosen","long")
+  )
+  joinedguilds$fill_group <- interaction(joinedguilds$percentage_diff >= 0,
+                                         joinedguilds$time)
+
+  joinedguilds$Class <- factor(
+    joinedguilds$fill_group,
+    levels = c("FALSE.short", "TRUE.short", "FALSE.chosen", "TRUE.chosen", "FALSE.long", "TRUE.long"),
+    labels = c("Short, Negative", "Short, Positive", "Chosen, Negative", "Chosen, Positive", "Long, Negative", "Long, Positive")
+  )
+
+  joinedguilds$Percentage <- joinedguilds$percentage_diff
+
+  ## ---- plot -----------------------------------------------------------------
+  ggplot(joinedguilds, aes(Guild, Percentage, fill = Class)) +
+    geom_col(position = position_dodge(width = 0.9)) +
+    geom_hline(yintercept = 0, colour = "grey", linetype = "dashed", linewidth = 0.5) +
+    scale_fill_manual(
+      values = c(
+        "Short, Negative"  = "#F2A488",
+        "Short, Positive"  = "#2FA4E799",
+        "Chosen, Negative" = "#E98C6B",
+        "Chosen, Positive" = "#2FA4E7cc",
+        "Long, Negative"   = "#E76F51",
+        "Long, Positive"   = "#2FA4E7"
+      ),
+      drop = FALSE
+    ) +
+    labs(x = "Guild", y = "Percentage Change") +
+    theme_minimal() +
+    theme(
+      axis.text.x = element_text(size = 14, angle = 90, vjust = 0.5),
+      axis.text.y = element_text(size = 14),
+      legend.position = "none",
+      axis.title = element_text(size = 16)
+    )
+
+}
 
 ##HOW TO LOAD PUT IN THE GUILDS STUFF
 #This loads and formats in the data for the guilds

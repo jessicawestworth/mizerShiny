@@ -151,25 +151,23 @@ guildplot_both <- function(harvestedprojection1, harvestedprojection2,
 
   joinedguilds$Class <- factor(
     joinedguilds$fill_group,
-    levels = c("FALSE.short", "FALSE.chosen", "FALSE.long",
-               "TRUE.short", "TRUE.chosen", "TRUE.long"),
-    labels = c("Short, Negative", "Chosen, Negative", "Long, Negative",
-               "Short, Positive", "Chosen, Positive", "Long, Positive")
+    levels = c("FALSE.short", "TRUE.short", "FALSE.chosen", "TRUE.chosen", "FALSE.long", "TRUE.long"),
+    labels = c("Short, Negative", "Short, Positive", "Chosen, Negative", "Chosen, Positive", "Long, Negative", "Long, Positive")
   )
 
   joinedguilds$Percentage <- joinedguilds$percentage_diff
 
   ggplot(joinedguilds, aes(Guild, Percentage, fill = Class)) +
     geom_col(position = position_dodge(width = 0.9)) +
-    geom_hline(yintercept = 0, colour = "grey", linetype = "dashed", size = 0.5) +
+    geom_hline(yintercept = 0, colour = "grey", linetype = "dashed", linewidth = 0.5) +
     scale_fill_manual(
       values = c(
-        "Short, Negative"  = "#E76F51",
+        "Short, Negative"  = "#F2A488",
+        "Short, Positive"  = "#2FA4E799",
         "Chosen, Negative" = "#E98C6B",
-        "Long, Negative"   = "#F2A488",
-        "Short, Positive"  = "#2FA4E7",
         "Chosen, Positive" = "#2FA4E7cc",
-        "Long, Positive"   = "#2FA4E799"
+        "Long, Negative"   = "#E76F51",
+        "Long, Positive"   = "#2FA4E7"
       ),
       drop = FALSE
     ) +

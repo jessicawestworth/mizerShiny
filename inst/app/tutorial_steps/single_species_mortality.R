@@ -14,9 +14,7 @@ species will have a higher mortality rate than larger individuals."
        intro = "Changing the value of this slider will change the
 year that is plotted and will run the simulation for this amount of time. It is useful to look at different time scales,
 as the impact of the imposed change may differ and it will show the
-oscillatory change in fish populations. The buttons below
-will set the year to 3, 6, or 12 years, which can be thought of
-as short, medium, and long term time scales."
+oscillatory change in fish populations."
   ),
   list(element = "#species_choose_mort", title = "Species Selector",
        intro = "Here is where you choose the species you want to investigate.

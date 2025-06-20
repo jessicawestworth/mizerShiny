@@ -78,8 +78,8 @@ load_or_project("Unharvested", "unharvestedprojection")
 load_or_project("Unfished",    "unfishedprojection")
 
 #Find years for the Time Range
-sp_max_year   <- floor((dim(unharvestedprojection@n)[1] - 2) / 2)
-fish_max_year <- floor((dim(unfishedprojection  @n)[1] - 2) / 2)
+sp_max_year   <- max(16, floor((dim(unharvestedprojection@n)[1] - 2) / 2))
+fish_max_year <- max(16, floor((dim(unfishedprojection  @n)[1] - 2) / 2))
 
 # guild & nutrition data ----------------------------------------
 guild_file <- app_path("Including", "guilds_information", "checkGuilds",
@@ -162,24 +162,6 @@ server <- function(input, output, session) {
     div(id = "fishery_sliders", slider_list)
   })
 
-
-  #This section has all the buttons for the years to change
-  #Right now, the time range that is plotted is a 3 year period around the year selected.
-  update_slider <- function(button_ids, slider_id, values) {
-    mapply(function(btn, val) {
-      observeEvent(input[[btn]], {
-        updateSliderInput(session, slider_id, value = val)
-      })
-    }, button_ids, values, SIMPLIFY = FALSE)
-  }
-
-  update_slider(c("set_year_5", "set_year_15", "set_year_30"), "year", c(3, 6, 12))
-  update_slider(c("fish_set_year_5", "fish_set_year_15", "fish_set_year_30"), "fishyear", c(3, 6, 12))
-  update_slider(c("fish_set_year2_5", "fish_set_year2_15", "fish_set_year2_30"), "fishyear2", c(3, 6, 12))
-  update_slider(c("mortset_year_5", "mortset_year_15", "mortset_year_30"), "mortyear", c(3, 6, 12))
-  update_slider(c("breakset_year_5", "breakset_year_15", "breakset_year_30"), "breakyear", c(3, 6, 12))
-  update_slider(c("breakset_year_5_mort", "breakset_year_15_mort", "breakset_year_30_mort"), "mortbreakyear", c(3, 6, 12))
-
   #This section contains all the functions to be used
   source("Functions/plotSpectraRelative.R")
   source("Functions/percentdiff.R")
@@ -251,7 +233,7 @@ server <- function(input, output, session) {
           group_by(Species, Feeding.guild) |>
           slice_max(maxw, n = 1, with_ties = FALSE) |>
           ungroup() |>
-          ## order by the guilds’ first appearance, then pull the Species names
+          ## order by the guilds' first appearance, then pull the Species names
           arrange(factor(Feeding.guild,
                          levels = unique(Feeding.guild))) |>
           pull(Species) |>
@@ -1216,9 +1198,6 @@ data-bs-content='Slider value indicates the starting biomass of the species. Exa
                                 label   = "Select a Species:",
                                 choices = NULL
                               ) %>% tagAppendAttributes(id = "species_chose"),
-                              actionButton(inputId = "set_year_5",  label = "3 Years",  class = "btn-small"),
-                              actionButton(inputId = "set_year_15", label = "6 Years",  class = "btn-small"),
-                              actionButton(inputId = "set_year_30", label = "12 Years", class = "btn-small"),
                               shinyjs::hidden(
                                 actionButton("resetTimeYear_bio", "Reset Time",
                                              class = "btn-small",
@@ -1377,12 +1356,9 @@ data-bs-content='Slider value indicates the change in mortality of a species. Ex
                                 label   = "Select a Species:",
                                 choices = NULL
                               ) %>% tagAppendAttributes(id = "species_choose_mort"),
-                              actionButton(inputId = "mortset_year_5",  label = "3 Years",  class = "btn-small"),
-                              actionButton(inputId = "mortset_year_15", label = "6 Years",  class = "btn-small"),
-                              actionButton(inputId = "mortset_year_30", label = "12 Years", class = "btn-small"),
                               shinyjs::hidden(
                                 actionButton("resetTimeYear", "Reset Time",
-                                             class = "btn-small",                           # drop the “btn-danger”
+                                             class = "btn-small",                           # drop the "btn-danger"
                                              style = "color:#2FA4E7;")
                               ),
                               actionButton(inputId = "goButton3",       label = "Run Simulation")
@@ -1511,7 +1487,7 @@ data-bs-content='Slider value indicates the change in mortality of a species. Ex
                               sliderInput(
                                 inputId = "fishyear",
                                 label   = "Time Range",
-                                min     = 0,
+                                min     = 1,
                                 max     = fish_max_year,
                                 value   = 5,
                                 step    = 1,
@@ -1528,9 +1504,6 @@ data-bs-content='Slider value indicates the change in mortality of a species. Ex
                                 )
                               ),
                               div(id = "fishery_sliders", uiOutput("fishery_sliders_ui")),
-                              actionButton(inputId = "fish_set_year_5",  label = "3 Years",  class = "btn-small"),
-                              actionButton(inputId = "fish_set_year_15", label = "6 Years",  class = "btn-small"),
-                              actionButton(inputId = "fish_set_year_30", label = "12 Years", class = "btn-small"),
                               actionButton(inputId = "goButton2",        label = "Run Simulation")
                             ),
                             tabPanel(
@@ -1538,7 +1511,7 @@ data-bs-content='Slider value indicates the change in mortality of a species. Ex
                               sliderInput(
                                 inputId = "fishyear2",
                                 label   = "Time Range",
-                                min     = 0,
+                                min     = 1,
                                 max     = fish_max_year,
                                 value   = 5,
                                 step    = 1,
@@ -1555,9 +1528,6 @@ data-bs-content='Slider value indicates the change in mortality of a species. Ex
                                 )
                               ),
                               div(id = "fishery_sliders", uiOutput("fishery_sliders_ui2")),
-                              actionButton(inputId = "fish_set_year2_5",  label = "3 Years",  class = "btn-small"),
-                              actionButton(inputId = "fish_set_year2_15", label = "6 Years",  class = "btn-small"),
-                              actionButton(inputId = "fish_set_year2_30", label = "12 Years", class = "btn-small"),
                               actionButton(inputId = "goButton22",        label = "Compare")
                             )
                           )
