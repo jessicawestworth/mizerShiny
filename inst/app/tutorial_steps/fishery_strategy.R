@@ -13,9 +13,7 @@ intro_steps <- list(
        intro = "Changing the value of this slider will change the
                  year that is plotted. It is useful to look at different time scales,
                  as the impact of the imposed change may differ and it will show the
-                 oscillatory change in fish populations. The buttons below
-                 will set the year to 3, 6, or 12 years, which can be thought of
-                 as short, medium, and long term management decisions."
+                 oscillatory change in fish populations."
   ),
   list(element = "#fishery_sliders", title = "Fishery Sliders",
        intro = "The sliders here change the fishing effort of each fleet. Effort values loaded on start-up of the app are the preset values and are what
