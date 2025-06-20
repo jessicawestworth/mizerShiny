@@ -1487,7 +1487,7 @@ data-bs-content='Slider value indicates the change in mortality of a species. Ex
                               sliderInput(
                                 inputId = "fishyear",
                                 label   = "Time Range",
-                                min     = 0,
+                                min     = 1,
                                 max     = fish_max_year,
                                 value   = 5,
                                 step    = 1,
@@ -1511,7 +1511,7 @@ data-bs-content='Slider value indicates the change in mortality of a species. Ex
                               sliderInput(
                                 inputId = "fishyear2",
                                 label   = "Time Range",
-                                min     = 0,
+                                min     = 1,
                                 max     = fish_max_year,
                                 value   = 5,
                                 step    = 1,
