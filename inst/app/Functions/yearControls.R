@@ -1,4 +1,3 @@
-
 setupYearControls <- function(input, session,
                               sliderId,
                               runBtnId,
@@ -21,7 +20,8 @@ setupYearControls <- function(input, session,
       rv$origMax     <- if (length(cfg)) cfg else 100
     }
 
-    rv$curMax <- input[[sliderId]]
+    # Set maximum to twice the selected value, capped at 100
+    rv$curMax <- max(12, min(2 * input[[sliderId]], 100))
 
     updateSliderInput(session, sliderId,
                       min   = rv$origMin,
@@ -30,6 +30,13 @@ setupYearControls <- function(input, session,
 
     shinyjs::show(boxId)
     shinyjs::show(resetId)
+  })
+
+  # Update maximum value each time the user selects a new value
+  observeEvent(input[[sliderId]], ignoreInit = TRUE, {
+    # Set maximum to twice the selected value, capped at 100
+    rv$curMax <- max(12, min(2 * input[[sliderId]], 100))
+    updateSliderInput(session, sliderId, max = rv$curMax)
   })
 
   observeEvent(input[[plusId]], {
