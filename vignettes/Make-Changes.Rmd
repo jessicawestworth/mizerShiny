@@ -63,7 +63,7 @@ The amount of time that a User can project forward, set by the 'Time Range' slid
 
 Firstly, you must have your own function, that accepts two `mizerSim` objects and two time arguments. One `mizerSim` object is user ran, the second is the 'base' which we compare against. The values plotted are within this time range. The function must output a ggplot object. 
 
-To put your code in, change the `server` code in *mizerShinyApp.R*. Find the section that you wish to change, either following `bioSimData`, `mortSimData` or `fishSimData`, corresponding to the 'Single Species' Biomass and Mortality sections, and the 'Fishery Strategy' section. There will be a repeated section of `output` code where each repeated chunk looks something like this.
+To put your code in, change the `server` code in *app.R*. Find the section that you wish to change, either following `bioSimData`, `mortSimData` or `fishSimData`, corresponding to the 'Single Species' Biomass and Mortality sections, and the 'Fishery Strategy' section. There will be a repeated section of `output` code where each repeated chunk looks something like this.
 
 ```{r, eval=FALSE}
  output$fishspeciesPlot <- renderPlotly({
