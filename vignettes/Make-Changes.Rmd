@@ -9,56 +9,6 @@ vignette: >
 
 # Modify mizerShiny
 
-Here contains information about how to load in your own `mizerParam` objects and how to add your own plotting functions. 
-
-## Load new mizerParams and mizerSims
-
-Firstly, the `mizerShiny()` function itself is coded for mizer models to be quickly loaded. It contains the argument mizerParams that allows you to load any mizerParams object, this is defaulted as NS_params. The `mizerParam` object is loaded from the folder 'inst/Including/mizerParam'.
-
-```{r, eval = F}
-
-mizerShiny(mizerParams = YourParams)
-
-```
-
-As the app relies on comparison with 'base' mizerSim objects, you may want to change these. The `baseSpSim` argument provides the 'base' mizerSim object for the 'Single Species' section, and the `baseFishSim` argument provides the same for the 'Fishery Strategy' section. These are loaded from the folder 'inst/Including/mizerSim'. 
-
-```{r, eval=FALSE}
-
-mizerShiny(mizerParams = YourParams, 
-           baseSpSim = YourSim,
-           baseFishSim = YourSim2)
-
-```
-
-The REPLACE argument will save the `mizerParams` and `mizerSim` objects that you have provided to the respective folders. Therefore, it can be loaded with only `mizerShiny()`, making it quicker to use.
-
-```{r, eval = FALSE}
-
-mizerShiny(mizerParams = YourParams, REPLACE = TRUE)
-
-#Then next time you call it, or if you provide the file/package to others
-#This will run YourParams instead of the default NS_params
-
-mizerShiny()
-
-#The same will work if you provide mizerSim objects.
-
-mizerShiny(mizerParams = YourParams, 
-           baseSpSim = YourSim,
-           baseFishSim = YourSim2,
-           REPLACE = TRUE)
-
-#Then calling mizerShiny() will load your mizerParams and mizerSim objects
-
-#To get back to the NS_params sims, either reinstall the package or repeat the process with NS_params.
-
-```
-
-The process outlined here is also discussed in the `mizerShiny()` documentation. 
-
-The amount of time that a User can project forward, set by the 'Time Range' slider in the app, is changed depending on the `mizerSim` object provided. It is set to whatever the time is in the `mizerSim`, minus 2, then divided by two. It is required for the base simulation to be longer than the User set sim, as the 'Species' and 'Guild' tabs include bars which are 2x the Users chosen 'Time Range'. 
-
 ## Add new plotting functions.
 
 Firstly, you must have your own function, that accepts two `mizerSim` objects and two time arguments. One `mizerSim` object is user ran, the second is the 'base' which we compare against. The values plotted are within this time range. The function must output a ggplot object. 
