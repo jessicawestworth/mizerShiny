@@ -24,6 +24,15 @@ app_path <- function(...) {
 }
 app_exists <- function(...) file.exists(app_path(...))
 
+# Load mizerParams directly - this makes the app runnable without the launcher
+params_path <- app_path("Including", "mizerParam", "params.rds")
+if (file.exists(params_path)) {
+  celticsim <- readRDS(params_path)
+} else {
+  # Fallback to default if no params file exists
+  celticsim <- mizer::NS_params
+}
+
 sim_path <- function(name) app_path(
   "Including", "mizerSim", name,
   paste0(tolower(name), "projection.RData")
