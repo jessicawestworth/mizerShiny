@@ -116,9 +116,25 @@ generateYieldDashboard <- function(NS_sim,
 
   # 4) Pie charts, without per-pie annotations
   pieList <- lapply(seq_along(yieldList), function(i) {
+    # Get the dimnames and dimension names
+    dn <- dimnames(yieldGearList[[i]])
+    dimn <- names(dn)
+
+    # Try to find the species dimension by common names
+    species_dim <- which(dimn %in% c("sp", "species", "Species"))
+    if (length(species_dim) != 1) {
+      # Fallback: assume the longest dimension (other than time) is species
+      species_dim <- which.max(sapply(dn, length))
+    }
+
+    # Sum over all other dimensions except species
+    other_dims <- setdiff(seq_along(dim(yieldGearList[[i]])), species_dim)
+    Value <- apply(yieldGearList[[i]], species_dim, sum)
+    Category <- dn[[species_dim]]
+
     df <- data.frame(
-      Category = dimnames(yieldList[[i]])[[2]],
-      Value    = apply(yieldGearList[[i]], 2, sum)
+      Category = Category,
+      Value = Value
     )
     headRoom <- 0.12
     dom <- if (nSim == 1) {
