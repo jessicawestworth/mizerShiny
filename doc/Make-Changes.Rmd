@@ -13,45 +13,48 @@ Here contains information about how to load in your own `mizerParam` objects and
 
 ## Load new mizerParams and mizerSims
 
-Firstly, the `mizerShiny()` function itself is coded for mizer models to be quickly loaded. It contains the argument mizerParams that allows you to load any mizerParams object, this is defaulted as NS_params. The `mizerParam` object is loaded from the folder 'inst/Including/mizerParam'.
+Firstly, the `mizerShiny()` function itself is coded for mizer models to be quickly loaded. It contains the argument params_file that allows you to load any mizerParams file, this is defaulted as params.rds. The `mizerParam` object is loaded from the folder 'inst/Including/mizerParam'.
 
 ```{r, eval = F}
 
-mizerShiny(mizerParams = YourParams)
+mizerShiny(params_file = "myparams.rds")
 
 ```
 
-As the app relies on comparison with 'base' mizerSim objects, you may want to change these. The `baseSpSim` argument provides the 'base' mizerSim object for the 'Single Species' section, and the `baseFishSim` argument provides the same for the 'Fishery Strategy' section. These are loaded from the folder 'inst/Including/mizerSim'. 
+As the app relies on comparison with 'base' mizerSim files, you may want to change these. The `sp_sim_file` argument provides the 'base' mizerSim object for the 'Single Species' section, and the `fish_sim_file` argument provides the same for the 'Fishery Strategy' section. These are loaded from the folder 'inst/Including/mizerSim'. 
 
 ```{r, eval=FALSE}
 
-mizerShiny(mizerParams = YourParams, 
-           baseSpSim = YourSim,
-           baseFishSim = YourSim2)
+mizerShiny(
+  params_file = "yourparams.rds",
+  sp_sim_file = "yourspSim.rdata",
+  fish_sim_file = "yourfishSim.rdata" # optional
+)
 
 ```
 
-The REPLACE argument will save the `mizerParams` and `mizerSim` objects that you have provided to the respective folders. Therefore, it can be loaded with only `mizerShiny()`, making it quicker to use.
+The REPLACE argument will save the `mizerParams` and `mizerSim` files that you have provided to the respective folders. Therefore, it can be loaded with only `mizerShiny()`, making it quicker to use.
 
 ```{r, eval = FALSE}
 
-mizerShiny(mizerParams = YourParams, REPLACE = TRUE)
+mizerShiny(params_file = "yourparams.rds", REPLACE = TRUE)
 
 #Then next time you call it, or if you provide the file/package to others
-#This will run YourParams instead of the default NS_params
+#This will run yourparams.rds instead of the default params.rds
 
 mizerShiny()
 
-#The same will work if you provide mizerSim objects.
+#The same will work if you provide mizerSim files.
 
-mizerShiny(mizerParams = YourParams, 
-           baseSpSim = YourSim,
-           baseFishSim = YourSim2,
+mizerShiny(
+  params_file = "yourparams.rds",
+  sp_sim_file = "yourspSim.rdata",
+  fish_sim_file = "yourfishSim.rdata",
            REPLACE = TRUE)
 
-#Then calling mizerShiny() will load your mizerParams and mizerSim objects
+#Then calling mizerShiny() will load your mizerParams and mizerSim files
 
-#To get back to the NS_params sims, either reinstall the package or repeat the process with NS_params.
+#To get back to the params.rds default sims, either reinstall the package or repeat the process with the mizerParams and mizerSim files located in inst/Including/mizerParam and inst/Including/mizerSim, respectively.
 
 ```
 

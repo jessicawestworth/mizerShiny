@@ -1,42 +1,42 @@
 ## ----eval = F-----------------------------------------------------------------
-#  
-#  mizerShiny(mizerParams = YourParams)
-#  
+#
+#  mizerShiny(params_file = "myparams.rds")
+#
 
 ## ----eval=FALSE---------------------------------------------------------------
-#  
-#  mizerShiny(mizerParams = YourParams,
-#             baseSpSim = YourSim,
-#             baseFishSim = YourSim2)
-#  
+#
+#  mizerShiny(params_file = "yourparams.rds",
+#             sp_sim_file = "yourspSim.rdata",
+#             fish_sim_file = "yourfishSim.rdata" # optional)
+#
 
 ## ----eval = FALSE-------------------------------------------------------------
-#  
-#  mizerShiny(mizerParams = YourParams, REPLACE = TRUE)
-#  
+#
+#  mizerShiny(params_file = "yourparams.rds", REPLACE = TRUE)
+#
 #  #Then next time you call it, or if you provide the file/package to others
-#  #This will run YourParams instead of the default NS_params
-#  
+#  #This will run yourparams.rds instead of the default params.rds
+#
 #  mizerShiny()
-#  
-#  #The same will work if you provide mizerSim objects.
-#  
-#  mizerShiny(mizerParams = YourParams,
-#             baseSpSim = YourSim,
-#             baseFishSim = YourSim2,
+#
+#  #The same will work if you provide mizerSim files.
+#
+#  mizerShiny(params_file = "yourparams.rds",
+#             sp_sim_file = "yourspSim.rdata",
+#             fish_sim_file = "yourfishSim.rdata",
 #             REPLACE = TRUE)
-#  
-#  #Then calling mizerShiny() will load your mizerParams and mizerSim objects
-#  
-#  #To get back to the NS_params sims, either reinstall the package or repeat the process with NS_params.
-#  
+#
+#  #Then calling mizerShiny() will load your mizerParams and mizerSim files
+#
+#  #To get back to the params.rds default sims, either reinstall the package or repeat the process with the mizerParams and mizerSim files located in inst/Including/mizerParam and inst/Including/mizerSim, respectively.
+#
 
 ## ----eval=FALSE---------------------------------------------------------------
 #   output$fishspeciesPlot <- renderPlotly({
 #      req(fishSimData())
-#  
+#
 #      win <- fish_win1()
-#  
+#
 #      ggplotly(
 #        plotSpeciesWithTimeRange(
 #          fishSimData()$sim1,
@@ -47,9 +47,9 @@
 #    })
 
 ## ----eval=FALSE---------------------------------------------------------------
-#  
-#  
-#  
+#
+#
+#
 #                            div(
 #                              class = "plot-card",
 #                              style = "flex: 4.5; height:50vh; display:flex; flex-direction:column; overflow: hidden; margin-top: -0.5rem",
@@ -103,7 +103,7 @@
 #                                }
 #                              )
 #                            )
-#  
-#  
-#  
+#
+#
+#
 

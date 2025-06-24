@@ -348,41 +348,44 @@ functions.</p>
 <div id="load-new-mizerparams-and-mizersims" class="section level2">
 <h2>Load new mizerParams and mizerSims</h2>
 <p>Firstly, the <code>mizerShiny()</code> function itself is coded for
-mizer models to be quickly loaded. It contains the argument mizerParams
-that allows you to load any mizerParams object, this is defaulted as
-NS_params. The <code>mizerParam</code> object is loaded from the folder
+mizer models to be quickly loaded. It contains the argument params_file
+that allows you to load any mizerParams file, this is defaulted as
+params.rds. The <code>mizerParam</code> object is loaded from the folder
 ‘inst/Including/mizerParam’.</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" tabindex="-1"></a><span class="fu">mizerShiny</span>(<span class="at">mizerParams =</span> YourParams)</span></code></pre></div>
-<p>As the app relies on comparison with ‘base’ mizerSim objects, you may
-want to change these. The <code>baseSpSim</code> argument provides the
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" tabindex="-1"></a><span class="fu">mizerShiny</span>(<span class="at">params_file =</span> <span class="st">&quot;myparams.rds&quot;</span>)</span></code></pre></div>
+<p>As the app relies on comparison with ‘base’ mizerSim files, you may
+want to change these. The <code>sp_sim_file</code> argument provides the
 ‘base’ mizerSim object for the ‘Single Species’ section, and the
-<code>baseFishSim</code> argument provides the same for the ‘Fishery
+<code>fish_sim_file</code> argument provides the same for the ‘Fishery
 Strategy’ section. These are loaded from the folder
 ‘inst/Including/mizerSim’.</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" tabindex="-1"></a><span class="fu">mizerShiny</span>(<span class="at">mizerParams =</span> YourParams, </span>
-<span id="cb2-2"><a href="#cb2-2" tabindex="-1"></a>           <span class="at">baseSpSim =</span> YourSim,</span>
-<span id="cb2-3"><a href="#cb2-3" tabindex="-1"></a>           <span class="at">baseFishSim =</span> YourSim2)</span></code></pre></div>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" tabindex="-1"></a><span class="fu">mizerShiny</span>(</span>
+<span id="cb2-2"><a href="#cb2-2" tabindex="-1"></a>  <span class="at">params_file =</span> <span class="st">&quot;yourparams.rds&quot;</span>,</span>
+<span id="cb2-3"><a href="#cb2-3" tabindex="-1"></a>  <span class="at">sp_sim_file =</span> <span class="st">&quot;yourspSim.rdata&quot;</span>,</span>
+<span id="cb2-4"><a href="#cb2-4" tabindex="-1"></a>  <span class="at">fish_sim_file =</span> <span class="st">&quot;yourfishSim.rdata&quot;</span> <span class="co"># optional</span></span>
+<span id="cb2-5"><a href="#cb2-5" tabindex="-1"></a>)</span></code></pre></div>
 <p>The REPLACE argument will save the <code>mizerParams</code> and
-<code>mizerSim</code> objects that you have provided to the respective
+<code>mizerSim</code> files that you have provided to the respective
 folders. Therefore, it can be loaded with only
 <code>mizerShiny()</code>, making it quicker to use.</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" tabindex="-1"></a><span class="fu">mizerShiny</span>(<span class="at">mizerParams =</span> YourParams, <span class="at">REPLACE =</span> <span class="cn">TRUE</span>)</span>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" tabindex="-1"></a><span class="fu">mizerShiny</span>(<span class="at">params_file =</span> <span class="st">&quot;yourparams.rds&quot;</span>, <span class="at">REPLACE =</span> <span class="cn">TRUE</span>)</span>
 <span id="cb3-2"><a href="#cb3-2" tabindex="-1"></a></span>
 <span id="cb3-3"><a href="#cb3-3" tabindex="-1"></a><span class="co">#Then next time you call it, or if you provide the file/package to others</span></span>
-<span id="cb3-4"><a href="#cb3-4" tabindex="-1"></a><span class="co">#This will run YourParams instead of the default NS_params</span></span>
+<span id="cb3-4"><a href="#cb3-4" tabindex="-1"></a><span class="co">#This will run yourparams.rds instead of the default params.rds</span></span>
 <span id="cb3-5"><a href="#cb3-5" tabindex="-1"></a></span>
 <span id="cb3-6"><a href="#cb3-6" tabindex="-1"></a><span class="fu">mizerShiny</span>()</span>
 <span id="cb3-7"><a href="#cb3-7" tabindex="-1"></a></span>
-<span id="cb3-8"><a href="#cb3-8" tabindex="-1"></a><span class="co">#The same will work if you provide mizerSim objects.</span></span>
+<span id="cb3-8"><a href="#cb3-8" tabindex="-1"></a><span class="co">#The same will work if you provide mizerSim files.</span></span>
 <span id="cb3-9"><a href="#cb3-9" tabindex="-1"></a></span>
-<span id="cb3-10"><a href="#cb3-10" tabindex="-1"></a><span class="fu">mizerShiny</span>(<span class="at">mizerParams =</span> YourParams, </span>
-<span id="cb3-11"><a href="#cb3-11" tabindex="-1"></a>           <span class="at">baseSpSim =</span> YourSim,</span>
-<span id="cb3-12"><a href="#cb3-12" tabindex="-1"></a>           <span class="at">baseFishSim =</span> YourSim2,</span>
-<span id="cb3-13"><a href="#cb3-13" tabindex="-1"></a>           <span class="at">REPLACE =</span> <span class="cn">TRUE</span>)</span>
-<span id="cb3-14"><a href="#cb3-14" tabindex="-1"></a></span>
-<span id="cb3-15"><a href="#cb3-15" tabindex="-1"></a><span class="co">#Then calling mizerShiny() will load your mizerParams and mizerSim objects</span></span>
-<span id="cb3-16"><a href="#cb3-16" tabindex="-1"></a></span>
-<span id="cb3-17"><a href="#cb3-17" tabindex="-1"></a><span class="co">#To get back to the NS_params sims, either reinstall the package or repeat the process with NS_params.</span></span></code></pre></div>
+<span id="cb3-10"><a href="#cb3-10" tabindex="-1"></a><span class="fu">mizerShiny</span>(</span>
+<span id="cb3-11"><a href="#cb3-11" tabindex="-1"></a>  <span class="at">params_file =</span> <span class="st">&quot;yourparams.rds&quot;</span>,</span>
+<span id="cb3-12"><a href="#cb3-12" tabindex="-1"></a>  <span class="at">sp_sim_file =</span> <span class="st">&quot;yourspSim.rdata&quot;</span>,</span>
+<span id="cb3-13"><a href="#cb3-13" tabindex="-1"></a>  <span class="at">fish_sim_file =</span> <span class="st">&quot;yourfishSim.rdata&quot;</span>,</span>
+<span id="cb3-14"><a href="#cb3-14" tabindex="-1"></a>           <span class="at">REPLACE =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb3-15"><a href="#cb3-15" tabindex="-1"></a></span>
+<span id="cb3-16"><a href="#cb3-16" tabindex="-1"></a><span class="co">#Then calling mizerShiny() will load your mizerParams and mizerSim files</span></span>
+<span id="cb3-17"><a href="#cb3-17" tabindex="-1"></a></span>
+<span id="cb3-18"><a href="#cb3-18" tabindex="-1"></a><span class="co">#To get back to the params.rds default sims, either reinstall the package or repeat the process with the mizerParams and mizerSim files located in inst/Including/mizerParam and inst/Including/mizerSim, respectively.</span></span></code></pre></div>
 <p>The process outlined here is also discussed in the
 <code>mizerShiny()</code> documentation.</p>
 <p>The amount of time that a User can project forward, set by the ‘Time
