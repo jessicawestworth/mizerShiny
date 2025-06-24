@@ -1,6 +1,6 @@
 Package: mizerShiny
 Title: mizerShiny
-Version: 0.1.0
+Version: 0.1.1
 Authors@R: 
     person("Luca", "Broadbent", , "luke.broadbent@cefas.gov.uk", role = c("aut","cre"))
 Description: Frontend to running mizer models.
